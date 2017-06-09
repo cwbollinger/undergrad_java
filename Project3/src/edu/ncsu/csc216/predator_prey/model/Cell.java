@@ -1,0 +1,258 @@
+package edu.ncsu.csc216.predator_prey.model;
+
+import java.util.Random;
+
+/**
+ * Represents a single grid in the territory of the simulation
+ * of predators and prey. It is an implementation of a finite state machine,
+ * and updates its state based on the number of predators and prey
+ * in the surrounding grids.
+ * @author Daniel Rice
+ *
+ */
+public class Cell {
+
+	/** The value of an Empty cell for the console implementation */
+	public static final int EMPTY_VALUE = 0;
+
+	/** The value of a prey cell for the console view */
+	public static final int PREY_VALUE = 2;
+
+	/** The value of a predator cell for the console view */
+	public static final int PREDATOR_VALUE = 1;
+
+	/** A Random number generator used to help determine transitions between states */
+	private Random r;
+
+	/** The user parameters for the simulation */
+	private UserParams params;
+
+	/** The state of an empty cell */
+	private final CellState empty = new EmptyCell();
+
+	/** The state of a cell with a predator */
+	private final CellState predator = new PredatorCell();
+
+	/** The state of a cell with a prey */
+	private final CellState prey = new PreyCell();
+
+	/** The current state of the cell */
+	private CellState state;
+
+	/**
+	 * Constructs a Cell and a random number generator to help
+	 * determine the transitions between states. The initial state
+	 * of the cell is determined by the parameter which must be a 0,
+	 * 1, or 2.
+	 * @param initialState the initialState of the Cell according
+	 * to the constant values
+	 */
+	public Cell(int initialState) {
+		r = new Random();
+		if (initialState == EMPTY_VALUE) {
+			state = empty;
+		} else if (initialState == PREY_VALUE) {
+			state = prey;
+		} else if (initialState == PREDATOR_VALUE) {
+			state = predator;
+		}
+		params = UserParams.instance();
+	}
+
+	/**
+	 * Returns a copy of the Cell.
+	 * @return a copy of the Cell
+	 */
+	public Cell copy() {
+		return new Cell(getState());
+	}
+
+	/**
+	 * Returns the state of the cell (0 if empty, 2 if prey, 1
+	 * if predator).
+	 * @return an integer representation of the state of the cell:
+	 * 0 for empty, 2 for prey, 1 for predator
+	 */
+	public int getState() {
+		return state.getState();
+	}
+
+	/**
+	 * Updates the state of the cell based on the number of prey and predators
+	 * in the adjacent cells.
+	 * @param prey the number of prey in the surrounding cells
+	 * @param predators the number of predators in the surrounding cells
+	 */
+	public void update(int prey, int predators) {
+		state.update(prey, predators);
+	}
+
+	/**
+	 * Generates the next random number to be used in determining
+	 * the next state of the cell.
+	 * @return a random number to be used in determining transitions
+	 * between states
+	 */
+	private double generateRandomValue() {
+		return r.nextDouble();
+	}
+
+	/**
+	 * Represents the actions of a cell that currently has
+	 * a predator in it.
+	 * @author Daniel Rice
+	 *
+	 */
+	private class PredatorCell extends CellState {
+
+		/**
+		 * Constructs the state by calling the super constructor.
+		 */
+		public PredatorCell() {
+			super();
+		}
+
+		/**
+		 * Returns an integer representation of the state of the cell.
+		 * @return 1
+		 */
+		public int getState() {
+			return PREDATOR_VALUE;
+		}
+
+		/**
+		 * Updates the state of the cell based on the number
+		 * of surrounding prey and predators, the probability values,
+		 * and a random number.
+		 *
+		 * @param numPrey the number of prey in surrounding cells
+		 * @param predators the number of predators in surrounding cells
+		 */
+		public void update(int numPrey, int predators) {
+			//stepping through the use cases, assuming positive numbers only
+			if (numPrey + predators == 0) {
+				if (generateRandomValue() < params.getPredatorIsolation()) {
+					state = empty;
+				}
+			} else if (numPrey == 0 && predators > 0) {
+				if (generateRandomValue() < params.getPredatorStarvation()) {
+					state = empty;
+				}
+			} else if (numPrey > 0 && predators == 0) {
+				if (generateRandomValue() < params.getPredatorLoneliness()) {
+					state = empty;
+				}
+			} else if (numPrey > predators + 1) {
+				state = predator;
+			} else {
+				if (generateRandomValue() < (1 - ((params.getPredatorSurvivalWhenPrey() * numPrey) /
+						(predators + 1)))) {
+					state = empty;
+				}
+			}
+		}
+		
+	}
+
+	/**
+	 * Represents the state of a cell when it has a prey.
+	 * @author Daniel Rice
+	 *
+	 */
+	private class PreyCell extends CellState {
+
+		/**
+		 * Constructs the PreyCell.
+		 */
+		public PreyCell() {
+			super();
+		}
+
+		/**
+		 * Returns an integer representation of the state
+		 * of the cell.
+		 * @return 2
+		 */
+		public int getState() {
+			return PREY_VALUE;
+		}
+
+		/**
+		 * Updates the state of the cell based on the number
+		 * of surrounding predators and prey as well as the
+		 * probabilities of UserParams, and a random number.
+		 * 
+		 * @param numPrey the number of surrounding cells in the prey state
+		 * @param predators the number of surrounding cells in the predator state
+		 */
+		public void update(int numPrey, int predators) {
+			//first use case, assuming positive numbers
+			if (numPrey + predators == 0) {
+				if (generateRandomValue() < params.getPreyLoneliness()) {
+					state = empty;
+				}
+			} else if (numPrey == 0 && predators > 0) {
+				if (generateRandomValue() < params.getPreyEaten()) {
+					state = empty;
+				}
+			} else if (predators > numPrey + 1) {
+				state = empty;
+			} else {
+				if (generateRandomValue() < (params.getPreySurvivalWhenPredators() * predators) / (numPrey + 1)) {
+					state = empty;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Represents the state of the cell when it does not have
+	 * a predator or a prey in it.
+	 * @author Daniel Rice
+	 *
+	 */
+	private class EmptyCell extends CellState {
+
+		/**
+		 * Constructs the EmptyCell.
+		 */
+		public EmptyCell() {
+			super();
+		}
+
+		/**
+		 * Returns an integer representation of the state of the Cell.
+		 * @return 0
+		 */
+		public int getState() {
+			return EMPTY_VALUE;
+		}
+
+		/**
+		 * Updates the state of the cell based on the surrounding
+		 * number of prey and predators, the probabilities, and
+		 * a random number.
+		 * 
+		 * @param numPrey the number of surrounding cells in the prey State
+		 * @param predators the number of surrounding cells in the predator State
+		 */
+		public void update(int numPrey, int predators) {
+			//assuming only positive numbers
+			//first use case of empty cell
+			if (numPrey < 2 && predators < 2) {
+				state = empty;
+			} else if (numPrey >= 2 && predators < 2) {//second case of empty
+				double rand = generateRandomValue();
+				if (rand < ((params.getPreyReproduction() * numPrey) / (numPrey + predators))) {
+					state = prey;
+				}
+			} else {
+				double rand = generateRandomValue();
+				if (rand < ((params.getPredatorReproduction() * numPrey) / (predators + 1))) {
+					state = predator;
+				}
+			}
+		}
+		
+	}
+}

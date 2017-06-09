@@ -1,0 +1,153 @@
+package edu.ncsu.csc216.todolist.model;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Observable;
+
+public class Task extends Observable implements Comparable<Task>, Serializable {
+
+	private static final long serialVersionUID = 7459L;
+	private String title;
+	private String details;
+	private Date startDateTime;
+	private Date dueDateTime;
+	private Date completedDateTime;
+	private boolean completed;
+	private String taskID;
+	private Category category;
+
+	public Task(String title, String details, Date start, Date due,
+			Category cat, String id) {
+		setCategory(cat);
+		setDueDateTime(due);
+		setStartDateTime(start);
+		setDetails(details);
+		setTitle(title);
+		this.taskID = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		if (title == null || title == "")
+			throw new IllegalArgumentException();
+		this.title = title;
+		setChanged();
+		notifyObservers(this);
+	}
+
+	public String getDetails() {
+		return details;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
+		setChanged();
+		notifyObservers(this);
+	}
+
+	public Date getDueDateTime() {
+		return dueDateTime;
+	}
+
+	public void setDueDateTime(Date due) {
+		if (due == null)
+			throw new IllegalArgumentException();
+		this.dueDateTime = due;
+		setChanged();
+		notifyObservers(this);
+	}
+
+	public Date getStartDateTime() {
+		return startDateTime;
+	}
+
+	public void setStartDateTime(Date start) {
+		if (start == null)
+			throw new IllegalArgumentException();
+		this.startDateTime = start;
+		setChanged();
+		notifyObservers(this);
+	}
+
+	public Date getCompletedDateTime() {
+		return completedDateTime;
+	}
+
+	public void setCompletedDateTime(Date start) {
+		if (start == null)
+			throw new IllegalArgumentException();
+		this.completedDateTime = start;
+		setChanged();
+		notifyObservers(this);
+	}
+
+	public boolean isCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(boolean comp) {
+		this.completed = comp;
+		setChanged();
+		notifyObservers(this);
+	}
+
+	public void setCategory(Category c) {
+		if (c == null)
+			throw new IllegalArgumentException();
+		this.category = c;
+		setChanged();
+		notifyObservers(this);
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public String getTaskID() {
+		return taskID;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((taskID == null) ? 0 : taskID.hashCode());
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Task other = (Task) obj;
+		if (taskID == null) {
+			if (other.taskID != null)
+				return false;
+		} else if (!taskID.equals(other.taskID))
+			return false;
+		return true;
+	}
+
+	@Override
+	public int compareTo(Task o) {
+		return dueDateTime.compareTo(o.getDueDateTime());
+
+	}
+}

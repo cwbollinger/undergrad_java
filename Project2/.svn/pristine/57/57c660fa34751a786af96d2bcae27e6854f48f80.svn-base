@@ -1,0 +1,96 @@
+package edu.ncsu.csc216.todolist.model;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class CategoryTest {
+	
+	Category test;
+	
+	@Before
+	public void setUp() throws Exception {
+		test = new Category("default", "the default", "1");
+	}
+
+	@Test
+	public void testHashCode() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetName() {
+		//expected is default, actual is test.getName()
+		assertEquals("default", test.getName());
+	}
+
+	@Test
+	public void testSetName() {
+		//this is before the name is changed so
+		//expected is default, actual is test.getName()
+		assertEquals("default", test.getName());
+		test.setName("Cole");
+		//after the name change the expected is Cole, actual is test.getName
+		assertEquals("Cole", test.getName());
+		
+	}
+
+	@Test
+	public void testGetDescription() {
+		//expected is the default, actual is test.getDescription()
+		assertEquals("the default", test.getDescription());
+	}
+
+	@Test
+	public void testSetDescription() {
+		//expected is the default, actual is test.getDescription()
+		assertEquals("the default", test.getDescription());
+		//change desc to "new"
+		test.setDescription("new");
+		//expected is new, actual is test.getDescription()
+		assertEquals("new", test.getDescription());
+	}
+
+	@Test
+	public void testGetCategoryID() {
+		//expected is 1, actual is test.getDescription()
+		assertEquals("1", test.getCategoryID());
+	}
+
+	@Test
+	public void testEqualsObject() {
+		// not Category object being compared
+		//expected is false, actual is test.equals("Doug")
+		assertEquals(false, test.equals("Doug"));
+		
+		//new Category object with all same except name
+		Category name = new Category("different", "the default", "1");
+		//expected is false, actual is test.equals(name)
+		assertEquals(false, test.equals(name));
+		
+		//new Category object with all same except name
+		Category desc = new Category("default", "differentt", "1");
+		//expected is false, actual is test.equals(desc)
+		assertEquals(false, test.equals(desc));
+		
+		//new Category object with all same except name
+		Category cat = new Category("default", "the default", "2");
+		//expected is false, actual is test.equals(cat)
+		assertEquals(false, test.equals(cat));
+		
+		
+		//new Category object with all same
+		Category same = new Category("default", "the default", "1");
+		//expected is false, actual is test.equals(same)
+		assertEquals(true, test.equals(same));
+		
+		
+	}
+
+	@Test
+	public void testCompareTo() {
+		fail("Not yet implemented");
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;Project3&apos;&#x0D;&#x0A;- Original project: &apos;Project3&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     PredatorPreyChart.java.mine&#x0D;&#x0A;     PredatorPreyChart.java.r13&#x0D;&#x0A;     PredatorPreyChart.java.r19" description="Delete elements" element1="src/edu/ncsu/csc216/predator_prey/gui/PredatorPreyChart.java.mine" element2="src/edu/ncsu/csc216/predator_prey/gui/PredatorPreyChart.java.r13" element3="src/edu/ncsu/csc216/predator_prey/gui/PredatorPreyChart.java.r19" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="3" stamp="1385934941808" subPackages="false" version="1.0"/>
+</session>

@@ -1,0 +1,241 @@
+package edu.ncsu.csc216.todolist.model;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
+
+import edu.ncsu.csc216.todolist.util.LinkedList;
+
+
+/**
+ * The Class TaskListholds a list of Tasks, and methods that can be used in order to edit them
+ * @author Cole Logar
+ */
+public class TaskList extends Observable implements Observer, Serializable {
+	
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 98734509L;
+	
+	/** The name of the TaskList. */
+	private String name;
+	
+	/** The next task number. */
+	private int nextTaskNum = 1;
+	
+	/** The task list id. */
+	private String taskListID;
+	
+	
+	/** The list of tasks. */
+	private LinkedList<Task> list;
+
+	/**
+	 * Instantiates a new task list.
+	 *
+	 * @param name the name of the TaskList
+	 * @param taskListID the task list id
+	 */
+	public TaskList(String name, String taskListID) {
+		this.name = name;
+		this.taskListID = taskListID;
+		list = new LinkedList<Task>();
+		setChanged();
+		notifyObservers(this);
+	}
+
+	/**
+	 * Gets the name of the TaskList.
+	 *
+	 * @return the name of the TaskList
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Sets the name of the TaskList.
+	 *
+	 *@throws IllegalArgumentException when name is null or an empty string
+	 * @param name the new name of the TaskList
+	 */
+	public void setName(String name) {
+		if (name == null || name.equals("")) {
+			throw new IllegalArgumentException();
+		}
+		this.name = name;
+		setChanged();
+		notifyObservers(this);
+	}
+
+	/**
+	 * Gets the task list id.
+	 *
+	 * @return the task list id
+	 */
+	public String getTaskListID() {
+		return taskListID;
+	}
+
+	/**
+	 * Sorts the list.
+	 */
+	private void sort() {
+		boolean sorted = false;
+		Task temp;
+		while (!sorted) {
+			sorted = true;
+			for (int i = 0; i < size() - 1; i++) {
+				if (list.get(i).compareTo(list.get(i + 1)) > 0) {
+					sorted = false;
+					temp = list.get(i);
+					list.remove(i);
+					list.add(i + 1, temp);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Adds a new task to the list.
+	 *
+	 * @param name the name of the task
+	 * @param details the details of the task
+	 * @param start the start date
+	 * @param due the due date
+	 * @param cat the category
+	 * @return true, if successful
+	 */
+	public boolean addTask(String name, String details, Date start, Date due,
+			Category cat) {
+		Task t = new Task(name, details, start, due, cat, taskListID + "-T"
+				+ nextTaskNum);
+		t.addObserver(this);
+		boolean b = list.add(t);
+		nextTaskNum++;
+		sort();
+		setChanged();
+		notifyObservers(this);
+		return b;
+	}
+
+	/**
+	 * Gets the task at the given index.
+	 *
+	 *@throws IndexOutOfBoundsException if the index is out of range
+     *         (index < 0 || index >= size())
+	 * @param idx the index
+	 * @return the task at the given index
+	 */
+	public Task getTaskAt(int idx) {
+		if (idx < 0 || idx > list.size() - 1)
+			throw new IndexOutOfBoundsException(idx + "");
+		return (Task) list.get(idx);
+	}
+
+	/**
+	 * Index of the Task with the given id.
+	 *
+	 * @param id the id
+	 * @return the index of the Task with the given id
+	 */
+	public int indexOf(String id) {
+		for (int i = 0; i < list.size(); i++) {
+			if (((Task) list.get(i)).getTaskID().equalsIgnoreCase(id))
+				return i;
+		}
+		return -1;
+	}
+
+	/**
+	 * Size of the list.
+	 *
+	 * @return the size of the list
+	 */
+	public int size() {
+		return list.size();
+	}
+
+	/**
+	 * Checks if the list is empty.
+	 *
+	 * @return true, if is empty
+	 */
+	public boolean isEmpty() {
+		return list.isEmpty();
+	}
+
+	/**
+	 * Removes the task at the given index.
+	 *
+	 *@throws IndexOutOfBoundsException if the index is out of range
+     *         (index < 0 || index >= size())
+	 * @param idx the index
+	 * @return the task that was removed
+	 */
+	public Task removeTaskAt(int idx) {
+		if (idx < 0 || idx >= list.size()) {
+			throw new IndexOutOfBoundsException();
+		}
+		Task t = (Task) list.remove(idx);
+		sort();
+		setChanged();
+		notifyObservers(t);
+		return t;
+	}
+
+	/**
+	 * Removes the task with the given id from the list.
+	 *
+	 * @param id the id of the Task
+	 * @return true, if successful
+	 */
+	public boolean removeTask(String id) {
+		int idx = this.indexOf(id);
+		if (idx != -1) {
+			list.remove(idx);
+			sort();
+			setChanged();
+			notifyObservers(this);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Gets the 2D array representation of the list.
+	 *
+	 * @return the 2D array representation of the list.
+	 */
+	public Object[][] get2DArray() {
+		Object[][] o = new Object[list.size()][8];
+		for (int i = 0; i < list.size(); i++) {
+			o[i][0] = ((Task) list.get(i)).getTaskID();
+			o[i][1] = ((Task) list.get(i)).getTitle();
+			o[i][2] = ((Task) list.get(i)).getDetails();
+			o[i][3] = ((Task) list.get(i)).getStartDateTime();
+			o[i][4] = ((Task) list.get(i)).getDueDateTime();
+			o[i][5] = ((Task) list.get(i)).getCompletedDateTime();
+			o[i][6] = ((Task) list.get(i)).isCompleted();
+			o[i][7] = ((Task) list.get(i)).getCategory();
+		}
+		return o;
+	}
+
+	/**
+	 * This method is called whenever the observed object is changed. An
+	 * application calls an Observable object's notifyObservers method to have
+	 * all the object's observers notified of the change.
+	 * 
+	 * @param obs the observable object.
+	 * @param obj an argument passed to the notifyObservers method
+	 */
+	public void update(Observable obs, Object obj) {
+		// if(list.contains(obj)){
+		sort();
+		setChanged();
+		notifyObservers(obj);
+		// }
+	}
+
+}

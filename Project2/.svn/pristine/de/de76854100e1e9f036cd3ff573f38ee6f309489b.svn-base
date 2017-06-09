@@ -1,0 +1,187 @@
+package edu.ncsu.csc216.todolist;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
+import edu.ncsu.csc216.todolist.model.CategoryList;
+import edu.ncsu.csc216.todolist.model.TaskList;
+
+public class ToDoList extends Observable implements Observer, Serializable {
+	
+	private static final long serialVersionUID = 34992L;
+	private static int RESIZE;
+	private int numLists;
+	private String filename;
+	private boolean changed;
+	private int nextTaskListNum;
+	private TaskList[] tasks;
+	private CategoryList categories;
+	
+	public ToDoList(){
+		
+		nextTaskListNum = 1;
+		categories = new CategoryList();
+		numLists = 0;
+		tasks = new TaskList[10];
+		addTaskList();
+		categories.addObserver(this);
+		changed = false;
+	}
+	
+	public boolean isChanged(){
+		return changed;
+	}
+	
+	public void setChanged(boolean changed){
+		this.changed = changed;
+		setChanged();
+		notifyObservers(this);
+	}
+	
+	public String getFilename(){
+		return filename;
+	}
+	
+	public void setFilename(String name){
+		if(name == "" || name == null){
+			throw new IllegalArgumentException();
+		}
+		this.filename = name;
+		setChanged(true);
+		
+	}
+	
+	public int getNumTaskLists(){
+		return numLists;
+	}
+	
+	public TaskList getTaskList(int idx){
+		if(idx < 0 || idx > numLists){
+			throw new IndexOutOfBoundsException();
+		}
+		return tasks[idx];
+	}
+	
+	public CategoryList getCategoryList(){
+		return categories;
+	}
+	
+	public int addTaskList(){
+		for(int i = 0; i < tasks.length; i++){
+			if(tasks[i] == null){
+				tasks[i] = new TaskList("New List", "TL"+nextTaskListNum);
+				tasks[i].addObserver(this);
+				numLists++;
+				nextTaskListNum++;
+				setChanged(true);
+				return i;
+			}
+		}
+		resize();
+		return addTaskList();
+	}
+	
+	private void resize(){
+		TaskList[] temp = new TaskList[tasks.length*2];
+		for(int i = 0; i < tasks.length; i++){
+			temp[i] = tasks[i];
+		}
+		tasks = temp;
+	}
+	
+	public void removeTaskList(int idx){
+		if(idx < 0 || idx > numLists){
+			throw new IndexOutOfBoundsException();
+		}
+		for(int i = numLists; i > idx; i--){
+			tasks[i -1] = tasks[i];
+		}
+		tasks[numLists] = null;
+		numLists--;
+		setChanged(true);
+	}
+	
+	/**
+	 * Saves the CategoryList and the array of TaskLists to the given file using 
+	 * object serialization.  
+	 * @param fname filename to save ToDoList information to.
+	 */
+	public void saveDataFile(String fname) {
+		try {
+			FileOutputStream fileOut = new FileOutputStream(fname);
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			for (int i = 0; i < numLists; i++) {
+				out.writeObject(tasks[i]);
+			}
+			out.writeObject(categories);
+			out.writeObject(filename);
+			out.writeInt(nextTaskListNum);
+			changed = false;
+			out.close();
+			fileOut.close();
+		}
+		catch (IOException e) {
+			System.err.println("An error occurred while saving file " + fname);
+			e.printStackTrace(System.err);
+		}
+	}
+	
+	/**
+	 * Opens a data file with the given name and creates the data structures from 
+	 * the serialized objects in the file.
+	 * @param fname filename to create ToDoList information from.
+	 */
+	public void openDataFile(String fname) {
+		if (changed) {
+			saveDataFile(filename);
+		}
+		try {
+			FileInputStream fileIn = new FileInputStream(fname);
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			ArrayList<TaskList> temp = new ArrayList<TaskList>();
+			Object tl = in.readObject();
+			while (tl instanceof TaskList) {
+				TaskList l = (TaskList)tl;
+				l.addObserver(this);
+				temp.add(l);
+				tl = in.readObject();
+			}
+			tasks = new TaskList[RESIZE];
+			tasks = temp.toArray(tasks);
+			numLists = temp.size();
+			categories = (CategoryList)tl;
+			categories.addObserver(this);
+			filename = (String)in.readObject();
+			nextTaskListNum = (int)in.readInt();
+			changed = false;
+			in.close();
+			fileIn.close();
+			
+		}
+		catch (IOException e) {
+			System.err.println("An error occurred while reading file " + fname);
+			e.printStackTrace(System.err);
+		}
+		catch (ClassNotFoundException c) {
+			System.err.println("Error reconstructing ToDoList from file " + fname);
+			c.printStackTrace(System.err);
+		}
+
+		setChanged();
+		notifyObservers(this);
+	}
+
+
+	public void update(Observable o, Object arg) {
+		setChanged(true);
+		// TODO Auto-generated method stub
+	}
+
+}

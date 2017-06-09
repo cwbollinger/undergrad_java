@@ -1,0 +1,57 @@
+
+public class HashTable {
+
+	private Key[] table;
+	private int tableSize;
+	
+	public HashTable(int tableSize) {
+		table = new Key[tableSize];
+		this.tableSize = tableSize;
+	}
+	
+	public boolean addKey(Key k) {
+		table[hash(k)] = k;
+		return false;
+	}
+	
+	public Key getIndex(Key k) {
+		int location = hash(k);
+		int jump = hash2(k);
+		while (!table[location].equals(k)) {
+			if (table[location] == null) { // we have reached the end of the chain but there is no matching key
+				return null;
+			}
+			location += jump;
+			location %= tableSize;
+		}
+		return table[location];
+	}
+	
+	public int hash(Key k) {
+		int hashSum = 0;
+		int[] vals = k.getVals();
+		for (int i = 0; i < Key.getKeySize(); i++) {
+			hashSum += vals[i]*i;
+		}
+		return hashSum % tableSize;
+	}
+	
+	public int hash2(Key k) {
+		int hashSum = 0;
+		int[] vals = k.getVals();
+		for (int i = 0; i < Key.getKeySize(); i++) {
+			hashSum += vals[i];
+		}
+		return hashSum % tableSize;
+	}
+	
+	public void print() {
+		System.out.println("Table size: "+tableSize);
+		for(int i = 0; i < tableSize; i++) {
+			if(table[i] != null) { // there's a key in this slot
+				System.out.println(i+":"+table[i]);
+				
+			}
+		}
+	}
+}

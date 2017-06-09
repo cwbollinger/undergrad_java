@@ -1,0 +1,396 @@
+package edu.ncsu.csc216.predator_prey.model;
+
+/**
+ * A Singleton implementation of the underlying data (probability constants)
+ * to be used in a Predator_Prey Simulation.
+ * @author Daniel Rice
+ *
+ */
+public class UserParams {
+
+	/** The default size of the territory */
+	public static final int D_SIZE = 19;
+
+	/** The default probability a prey will die of loneliness */
+	public static final double D_PREY_LONELINESS = .1;
+
+	/** The default probability a prey will be eaten */
+	public static final double D_PREY_EATEN = .9;
+
+	/** The default probability a predator will die with no food */
+	public static final double D_PREDATOR_ISOLATION = .8;
+
+	/** The default probability a predator will die in a group with no food */
+	public static final double D_PREDATOR_STARVATION = 1.0;
+
+	/** The default probability a predator will die of loneliness */
+	public static final double D_PREDATOR_LONELINESS = .2;
+
+	/** The default probability a prey will reproduce */
+	public static final double D_PREY_REPRODUCTION = 1.0;
+
+	/** The default probability a predator will reproduce */
+	public static final double D_PREDATOR_REPRODUCTION = 1.0;
+
+	/** The default probability a prey will survive in the presence of predators */
+	public static final double D_PREY_SURVIVAL_WHEN_PREDATORS = 1.0;
+
+	/** The default probability a predator will survive based on the prey */
+	public static final double D_PREDATOR_SURVIVAL_WHEN_PREY = 1.0;
+
+	/** The default probability of a prey initiliazing in a cell */
+	public static final double D_PREY_INITIAL_PROBABILITY = .4;
+
+	/** The default probability of a predator initializing in a cell */
+	public static final double D_PREDATOR_INITIAL_PROBABILITY = .2;
+
+	/** The size of the territory of the simulation (square) */
+	private int size;
+
+	/** The probability a prey will die in the absence of neighbors */
+	private double preyLoneliness;
+
+	/** The probability a single prey will be eaten by predators */
+	private double preyEaten;
+
+	/** The probability a predator will die if on its own with no food */
+	private double predatorIsolation;
+
+	/** The probability a predator will die in a group with no food */
+	private double predatorStarvation;
+
+	/** The probability a single predator will die of loneliness without prey */
+	private double predatorLoneliness;
+
+	/** The adjustment factor for reproduction rate of prey */
+	private double preyReproduction;
+
+	/** The adjustment factor for reproduction of predators */
+	private double predatorReproduction;
+
+	/** The adjustment factor for effect of predators on prey survival */
+	private double preySurvivalWhenPredators;
+
+	/** The adjustment factor for effect of prey upon predator survival */
+	private double predatorSurvivalWhenPrey;
+
+	/** The initial probability that a cell contains a prey */
+	private double preyInitialProbability;
+
+	/** The initial probability that a cell contains a predator */
+	private double predatorInitialProbability;
+
+	/** The private instance of this class */
+	private static UserParams singleton;
+
+	/**
+	 * The private constructor for the singleton instance of this class. It
+	 * initializes all of the fields to their default values.
+	 */
+	private UserParams() {
+		size = D_SIZE;
+		preyLoneliness = D_PREY_LONELINESS;
+		preyEaten = D_PREY_EATEN;
+		predatorIsolation = D_PREDATOR_ISOLATION;
+		predatorStarvation = D_PREDATOR_STARVATION;
+		predatorLoneliness = D_PREDATOR_LONELINESS;
+		preyReproduction = D_PREY_REPRODUCTION;
+		predatorReproduction = D_PREDATOR_REPRODUCTION;
+		preySurvivalWhenPredators = D_PREY_SURVIVAL_WHEN_PREDATORS;
+		predatorSurvivalWhenPrey = D_PREDATOR_SURVIVAL_WHEN_PREY;
+		preyInitialProbability = D_PREY_INITIAL_PROBABILITY;
+		predatorInitialProbability = D_PREDATOR_INITIAL_PROBABILITY;
+	}
+
+	/**
+	 * If the class has never been constructed yet, then it constructs an
+	 * object of the class. If the class has already been instantiated once anywhere
+	 * in the program, then it simply returns that instance.
+	 * @return the instance of the UserParams class
+	 */
+	public static UserParams instance() {
+		if (singleton == null) {
+			singleton = new UserParams();
+		}
+		return singleton;
+	}
+
+	/** Returns the size of the territory
+	 * 
+	 * @return the length of the sides of the territory
+	 */
+	public int getSize() {
+		return size;
+	}
+
+	/**
+	 * Sets the size of the UserParams. The size of the territory must
+	 * be greater than or equal to 0.
+	 * @param size the length of the sides of the territory
+	 * @throws IllegalArgumentException - if the size is less than or equal to 0
+	 */
+	public void setSize(int size) {
+		if (size <= 0) {
+			throw new IllegalArgumentException("The side length must be greater than 0.");
+		}
+		this.size = size;
+	}
+
+	/**
+	 * Returns the loneliness of the prey.
+	 * @return the loneliness of the prey
+	 */
+	public double getPreyLoneliness() {
+		return preyLoneliness;
+	}
+
+	/**
+	 * Sets the loneliness of the prey. If the value is less than 0 or greater than 1,
+	 * an IllegalArgumentException is thrown.
+	 * @param lonely the probability a prey dies in the absence of neighbors
+	 * @throws IllegalArgumentException - if the parameter value is less than 0
+	 * or greater than 1.0
+	 */
+	public void setPreyLoneliness(double lonely) {
+		if (lonely < 0.0 || lonely > 1.0) {
+			throw new IllegalArgumentException("The input must be between 0.0 and 1.0.");
+		}
+		preyLoneliness = lonely;
+	}
+
+	/**
+	 * Returns the probability a prey will be eaten.
+	 * @return the probability a prey will be eaten
+	 */
+	public double getPreyEaten() {
+		return preyEaten;
+	}
+
+	/**
+	 * Sets the probability that a prey will be eaten. The param value
+	 * must be between 0 and 1 inclusive or it will throw an IllegalArgumentException.
+	 * @param eaten the probability a prey will be eaten
+	 * @throws IllegalArgumentException - if the value given is less than 0
+	 * or greater than 1.0
+	 */
+	public void setPreyEaten(double eaten) {
+		if (eaten < 0 || eaten > 1.0) {
+			throw new IllegalArgumentException("The input must be between 0.0 and 1.0.");
+		}
+		preyEaten = eaten;
+	}
+
+	/**
+	 * Returns the probability a predator will die on its own without
+	 * any food.
+	 * @return the probability a predator will die on its own without food
+	 */
+	public double getPredatorIsolation() {
+		return predatorIsolation;
+	}
+
+	/**
+	 * Sets the probability a predator will die on its own without food. The param
+	 * value must be between 0.0 and 1.0 inclusive.
+	 * @param isolation the probability a predator will die on its own
+	 * without any food
+	 * @throws IllegalArgumentException if the param value is less than 0.0 or greater than
+	 * 1.0
+	 */
+	public void setPredatorIsolation(double isolation) {
+		if (isolation < 0.0 || isolation > 1.0) {
+			throw new IllegalArgumentException("The input must be between 0.0 and 1.0.");
+		}
+		predatorIsolation = isolation;
+	}
+
+	/**
+	 * Returns the probability a predator will die of starvation.
+	 * @return the probability a predator will die of starvation
+	 */
+	public double getPredatorStarvation() {
+		return predatorStarvation;
+	}
+
+	/**
+	 * Sets the probability a predator will die of starvation. The param value
+	 * must be between 0.0 and 1.0 inclusive.
+	 * @param starve the probability a predator will die of starvation
+	 * @throws IllegalArgumentException - if the value is less than 0.0 or greater
+	 * than 1.0
+	 */
+	public void setPredatorStarvation(double starve) {
+		if (starve < 0.0 || starve > 1.0) {
+			throw new IllegalArgumentException("the input must be between 0.0 and 1.0.");
+		}
+		predatorStarvation = starve;
+	}
+
+	/**
+	 * Returns the probability that a predator will die of loneliness.
+	 * @return the probability that a predator will die of loneliness
+	 */
+	public double getPredatorLoneliness() {
+		return predatorLoneliness;
+	}
+
+	/**
+	 * Sets the probability that a predator will die of loneliness. The value
+	 * must be between 0.0 and 1.0 inclusive.
+	 * @param lonely the probability a predator will die of loneliness
+	 * @throws IllegalArgumentException - if the param value is less than 0.0
+	 * or greater than 1.0
+	 */
+	public void setPredatorLoneliness(double lonely) {
+		if (lonely < 0.0 || lonely > 1.0) {
+			throw new IllegalArgumentException("The input must be between 0.0 and 1.0.");
+		}
+		predatorLoneliness = lonely;
+	}
+
+	/**
+	 * Returns the reproduction rate of prey.
+	 * @return the reproduction rate of prey
+	 */
+	public double getPreyReproduction() {
+		return preyReproduction;
+	}
+
+	/**
+	 * Sets the adjustment factor for reproduction of prey. The value must
+	 * be greater than or equal to 0.0.
+	 * @param reproduce the adjustment factor for reproduction of prey
+	 * @throws IllegalArgumentException - if the value is less than 0.0
+	 */
+	public void setPreyReproduction(double reproduce) {
+		if (reproduce < 0.0) {
+			throw new IllegalArgumentException("The input must be greater than or equal to 0.");
+		}
+		preyReproduction = reproduce;
+	}
+
+	/**
+	 * Returns the adjustment factor for reproduction of predators.
+	 * @return the adjustment factor for reproduction of predators
+	 */
+	public double getPredatorReproduction() {
+		return predatorReproduction;
+	}
+
+	/**
+	 * Sets the adjustment factor for reproduction of predators. The value
+	 * must be greater than or equal to 0.0.
+	 * @param reproduce the adjustment factor for reproduction of predators
+	 * @throws IllegalArgumentException - if the value is less than 0.0
+	 */
+	public void setPredatorReproduction(double reproduce) {
+		if (reproduce < 0.0) {
+			throw new IllegalArgumentException("The input must be greater than or equal to 0.");
+		}
+		predatorReproduction = reproduce;
+	}
+
+	/**
+	 * Returns the adjustment factor for effect of predators upon prey
+	 * survival.
+	 * @return the adjustment factor for effect of predators upon prey
+	 * survival
+	 */
+	public double getPreySurvivalWhenPredators() {
+		return preySurvivalWhenPredators;
+	}
+
+	/**
+	 * Sets the adjustment factor for effect of predators upon prey
+	 * survival. The value must be greater than or equal to 0.
+	 * @param survive the adjustment factor for effect of predators
+	 * upon prey survival
+	 * @throws IllegalArgumentException - if the value is less than 0
+	 */
+	public void setPreySurvivalWhenPredators(double survive) {
+		if (survive < 0.0) {
+			throw new IllegalArgumentException("The input must be greater than or equal to 0.");
+		}
+		preySurvivalWhenPredators = survive;
+	}
+
+	/**
+	 * Returns the adjustment factor for effect of prey upon predator
+	 * survival.
+	 * @return the adjustment factor for effect of prey upon predator
+	 * survival
+	 */
+	public double getPredatorSurvivalWhenPrey() {
+		return predatorSurvivalWhenPrey;
+	}
+
+	/**
+	 * Sets the adjustment factor for effect of prey upon predator survival.
+	 * The value must be greater than or equal to 0.0.
+	 * @param survive the adjustment factor for effect of prey upon predator
+	 * survival
+	 * @throws IllegalArgumentException - if the value is less than 0.0
+	 */
+	public void setPredatorSurvivalWhenPrey(double survive) {
+		if (survive < 0) {
+			throw new IllegalArgumentException("The input must be greater than or equal to 0.");
+		}
+		predatorSurvivalWhenPrey = survive;
+	}
+
+	/**
+	 * Returns the probability that a cell initially contains a prey.
+	 * @return the probability a cell initially contains a prey
+	 */
+	public double getPreyInitialProbability() {
+		return preyInitialProbability;
+	}
+
+	/**
+	 * Sets the probability that a cell initially contains a prey. The sum
+	 * of the initial probabilities of prey and predator cannot exceed 1.0.
+	 * @param initial the probability that a cell initially contains a prey
+	 * @throws IllegalArgumentException - if the value given is less than 0 or
+	 * greater than 1
+	 */
+	public void setPreyInitialProbability(double initial) {
+		if (initial < 0 || initial > 1) {
+			throw new IllegalArgumentException("The input must be between 0.0 and 1.0.");
+		}
+		preyInitialProbability = initial;
+	}
+
+	/**
+	 * Returns the probability that a cell initially contains a predator.
+	 * @return the probability that a cell initially contains a predator
+	 */
+	public double getPredatorInitialProbability() {
+		return predatorInitialProbability;
+	}
+
+	/**
+	 * Sets the probability that a cell initially contains a predator. The sum
+	 * of the initial probabilities for prey and predators cannot exceed 1.0.
+	 * @param initial the probability that a cell initially contains a predator
+	 * @throws IllegalArgumentException - if the value given is less than 0 or
+	 * greater than 1
+	 */
+	public void setPredatorInitialProbability(double initial) {
+		if (initial < 0 || initial > 1) {
+			throw new IllegalArgumentException("The input must be between 0.0 and 1.0");
+		}
+		predatorInitialProbability = initial;
+	}
+
+	/**
+	 * Checks to make sure that the sum of the predatorInitialProbability
+	 * and preyInitialProbability does not exceed 1.0.
+	 * @throws IllegalArgumentException - if the sum of predatorInitialProbability
+	 * and preyInitialProbability exceeds 1.0
+	 */
+	public void validateInitialProbabilities() {
+		if ((preyInitialProbability + predatorInitialProbability) > 1.0) {
+			throw new IllegalArgumentException("Initialization probabilities must not exceed 1.0.");
+		}
+	}
+}

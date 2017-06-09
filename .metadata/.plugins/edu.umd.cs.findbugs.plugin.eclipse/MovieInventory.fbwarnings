@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.2" sequence="1" timestamp="1380642665661" analysisTimestamp="1380642640297" release="">
+  <Project projectName="MovieInventory">
+    <Jar>C:\Users\chris\workspace\MovieInventory\bin</Jar>
+    <AuxClasspathEntry>C:\Users\chris\workspace\MovieInventory\bin</AuxClasspathEntry>
+    <SrcDir>C:\Users\chris\workspace\MovieInventory\src</SrcDir>
+    <Cloud id="edu.umd.cs.findbugs.cloud.doNothingCloud" online="false"></Cloud>
+  </Project>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" abbrev="Dm" category="I18N" first="1">
+    <Class classname="edu.ncsu.csc216.movie_inventory.MovieInventoryUI">
+      <SourceLine classname="edu.ncsu.csc216.movie_inventory.MovieInventoryUI" sourcefile="MovieInventoryUI.java" sourcepath="edu/ncsu/csc216/movie_inventory/MovieInventoryUI.java"/>
+    </Class>
+    <Method classname="edu.ncsu.csc216.movie_inventory.MovieInventoryUI" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.movie_inventory.MovieInventoryUI" start="31" end="34" startBytecode="0" endBytecode="83" sourcefile="MovieInventoryUI.java" sourcepath="edu/ncsu/csc216/movie_inventory/MovieInventoryUI.java"/>
+    </Method>
+    <Method classname="java.util.Scanner" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.util.Scanner"/>
+    </Method>
+    <SourceLine classname="edu.ncsu.csc216.movie_inventory.MovieInventoryUI" start="32" end="32" startBytecode="12" endBytecode="12" sourcefile="MovieInventoryUI.java" sourcepath="edu/ncsu/csc216/movie_inventory/MovieInventoryUI.java"/>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" abbrev="Dm" category="BAD_PRACTICE" first="1">
+    <Class classname="edu.ncsu.csc216.movie_inventory.MovieInventoryUI">
+      <SourceLine classname="edu.ncsu.csc216.movie_inventory.MovieInventoryUI" sourcefile="MovieInventoryUI.java" sourcepath="edu/ncsu/csc216/movie_inventory/MovieInventoryUI.java"/>
+    </Class>
+    <Method classname="edu.ncsu.csc216.movie_inventory.MovieInventoryUI" name="userInterface" signature="()V" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.movie_inventory.MovieInventoryUI" start="43" end="42" startBytecode="0" endBytecode="209" sourcefile="MovieInventoryUI.java" sourcepath="edu/ncsu/csc216/movie_inventory/MovieInventoryUI.java"/>
+    </Method>
+    <SourceLine classname="edu.ncsu.csc216.movie_inventory.MovieInventoryUI" start="58" end="58" startBytecode="82" endBytecode="82" sourcefile="MovieInventoryUI.java" sourcepath="edu/ncsu/csc216/movie_inventory/MovieInventoryUI.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Tue, 1 Oct 2013 11:50:39 -0400" total_classes="3" referenced_classes="17" total_bugs="2" total_size="174" num_packages="1" vm_version="23.25-b01" cpu_seconds="65.11" clock_seconds="25.38" peak_mbytes="316.84" alloc_mbytes="455.12" gc_seconds="1.65" priority_2="1" priority_1="1">
+    <PackageStats package="edu.ncsu.csc216.movie_inventory" total_bugs="2" total_types="3" total_size="174" priority_2="1" priority_1="1">
+      <ClassStats class="edu.ncsu.csc216.movie_inventory.Movie" sourceFile="Movie.java" interface="false" size="60" bugs="0"/>
+      <ClassStats class="edu.ncsu.csc216.movie_inventory.MovieInventory" sourceFile="MovieInventory.java" interface="false" size="32" bugs="0"/>
+      <ClassStats class="edu.ncsu.csc216.movie_inventory.MovieInventoryUI" sourceFile="MovieInventoryUI.java" interface="false" size="82" bugs="2" priority_2="1" priority_1="1"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="4661" invocations="2" avgMicrosecondsPerInvocation="2330729" maxMicrosecondsPerInvocation="2399644" standardDeviationMircosecondsPerInvocation="68915"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="2060" invocations="366" avgMicrosecondsPerInvocation="5630" maxMicrosecondsPerInvocation="194038" standardDeviationMircosecondsPerInvocation="15184"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="1440" invocations="17" avgMicrosecondsPerInvocation="84752" maxMicrosecondsPerInvocation="1369404" standardDeviationMircosecondsPerInvocation="321190"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="1075" invocations="367" avgMicrosecondsPerInvocation="2930" maxMicrosecondsPerInvocation="68579" standardDeviationMircosecondsPerInvocation="7590"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="754" invocations="17" avgMicrosecondsPerInvocation="44370" maxMicrosecondsPerInvocation="161561" standardDeviationMircosecondsPerInvocation="49935"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="459" invocations="17" avgMicrosecondsPerInvocation="27021" maxMicrosecondsPerInvocation="106601" standardDeviationMircosecondsPerInvocation="29903"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="364" invocations="335" avgMicrosecondsPerInvocation="1089" maxMicrosecondsPerInvocation="26047" standardDeviationMircosecondsPerInvocation="2306"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="354" invocations="22" avgMicrosecondsPerInvocation="16135" maxMicrosecondsPerInvocation="299991" standardDeviationMircosecondsPerInvocation="62011"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="336" invocations="3" avgMicrosecondsPerInvocation="112061" maxMicrosecondsPerInvocation="335835" standardDeviationMircosecondsPerInvocation="158232"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="307" invocations="23" avgMicrosecondsPerInvocation="13352" maxMicrosecondsPerInvocation="61789" standardDeviationMircosecondsPerInvocation="16717"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="294" invocations="21" avgMicrosecondsPerInvocation="14014" maxMicrosecondsPerInvocation="73418" standardDeviationMircosecondsPerInvocation="18851"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="265" invocations="17" avgMicrosecondsPerInvocation="15631" maxMicrosecondsPerInvocation="110795" standardDeviationMircosecondsPerInvocation="27184"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="251" invocations="23" avgMicrosecondsPerInvocation="10951" maxMicrosecondsPerInvocation="82190" standardDeviationMircosecondsPerInvocation="17257"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1380642665633" release="" codeSize="0" numClasses="0"/>
+  </History>
+</BugCollection>

@@ -1,0 +1,102 @@
+package edu.ncsu.csc216.todolist.util;
+
+import java.io.Serializable;
+import java.util.Arrays;
+
+public class ArrayList<E> implements List, Serializable {
+	private static final long serialVersionUID = 28592L;
+	private static final int DEFAULT_SIZE = 10;
+	private E[] list;
+	private int size;
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList(int capacity) {
+		list = (E[]) (new Object[capacity]);
+		size = 0;
+	}
+	
+	public ArrayList() {
+		this(DEFAULT_SIZE);
+	}
+	
+	@Override
+	public int size() {
+		return size;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return size == 0;
+	}
+
+	@Override
+	public boolean contains(Object o) {
+		for(int i = 0; i < size; i++){
+			if(list[i].equals(o))
+				return true;
+		}
+		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean add(Object o) {
+		ensureCapacity(size + 1);
+		list[size] = (E) o;
+		size++;
+		return true;
+	}
+
+	private void ensureCapacity(int i) {
+		if (i > list.length) {
+			int newCapacity = list.length * 2 + 1;
+			if (i > newCapacity) {
+				newCapacity = i;
+				
+			}
+			list = Arrays.copyOf(list,  newCapacity);
+		}
+	}
+
+	@Override
+	public E get(int index) {
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException("" + index);
+		}
+		return list[index];
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void add(int index, Object element) {
+		ensureCapacity(size + 1);
+		for (int i = size - 1; i >= index; i--) {
+			list[i + 1] = list[i];
+		}
+		list[index] = (E) element;
+		size++;
+	}
+
+	@Override
+	public E remove(int index) {
+		E rtn = list[index];
+		for (int i = index; i < size - 1; i++) {
+			list[i] = list[i+1];
+		}
+		list[size - 1] = null;
+		size--;
+		return rtn;
+	}
+
+	@Override
+	public int indexOf(Object o) {
+		for(int i = 0; i < size; i++){
+			if(list[i].equals(o)){
+				return i;
+			}
+				
+		}
+		return -1;
+	}
+
+}

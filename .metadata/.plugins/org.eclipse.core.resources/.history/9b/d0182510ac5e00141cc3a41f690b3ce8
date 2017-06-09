@@ -1,0 +1,158 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class Main {
+
+	private static HashTable hashTable;
+	private static Key[] indexTable;
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.println("What file should I process?");
+		String fileName = input.nextLine();
+		long start_time;
+		long finish_time;
+		try {
+			start_time = System.currentTimeMillis();
+			processFile(fileName);
+			finish_time = System.currentTimeMillis();
+
+		} catch (Exception e) {
+			System.out.println("ERROR PROCESSING FILE: " + e);
+			start_time=finish_time=0;
+			System.exit(-1);
+		}		System.out.println("Time elapsed: "+(finish_time-start_time)+" ms");
+		
+		promptUser(input);
+		input.close();
+		return;
+	}
+
+	public static void processFile(String fileName) throws IOException,
+			FileNotFoundException {
+		Scanner lineCounter = new Scanner(new FileReader(fileName));
+		Scanner fileScanner = new Scanner(new FileReader(fileName));
+
+		int keySize = fileScanner.nextInt(); // get key size
+		int[] maxVals = new int[keySize];
+		// get max values for key
+		for (int i = 0; i < keySize; i++) {
+			maxVals[i] = fileScanner.nextInt();
+		}
+
+		// find # of lines in file
+		int numLines = 0;
+		while (lineCounter.hasNextLine()) {
+			lineCounter.nextLine();
+			numLines++;
+		}
+		lineCounter.close();
+
+		Key.initKey(keySize, maxVals);
+		//Key.printStats();
+		//System.out.println("Number of Lines:"+numLines);
+		// init hash table to 120% of the number of lines in the file with keys (some will
+		// be duplicate keys)
+		hashTable = new HashTable((int) ((numLines-2) * 1.2));
+		indexTable = new Key[numLines-2];
+		int[] vals = new int[keySize];
+		int numKeys = 0; // how many keys have been inserted into the list
+		while (fileScanner.hasNextLine()) {
+			for (int i = 0; i < keySize; i++) {
+				int val = fileScanner.nextInt();
+				if (val == -911) { // end of file
+					fileScanner.close();
+					return;
+				}
+				vals[i] = val;
+			}
+			Key insert = new Key(vals, numKeys);
+			//System.out.println("NumKeys: "+numKeys);
+			if (hashTable.getIndex(insert) == -1) { // key is not already in list
+				hashTable.addKey(insert);
+				indexTable[numKeys++] = insert;
+			}
+		}
+		fileScanner.close();
+	}
+
+	public static void promptUser(Scanner input) {
+		Integer command;
+		while (true) {
+			System.out.println("What would you like to do? (enter corresponding number)");
+			System.out.println("Find the index of a key (1)");
+			System.out.println("Find the key at an index (2)");
+			System.out.println("Print the status of the hash table (3)");
+			System.out.println("Print the status of the index table (4)");
+			System.out.println("Exit (5)");
+			System.out.print(">");
+			
+			try {
+				command = Integer.decode(input.nextLine());
+			} catch (NumberFormatException e) {
+				System.out.println("You must enter a number\n");
+				continue;
+			}
+			
+			switch((int)command) {
+			case 1:
+				Key k = getKey(input);
+				if(k != null) {
+					System.out.println(hashTable.getIndex(k));
+				}
+				break;
+			case 2:
+				System.out.println("Enter an index");
+				if (!input.hasNextInt()) {
+					System.out.println("Index must be a number");
+				} else {
+					int index = input.nextInt();
+				}
+				input.nextLine(); // clear the rest of the input
+				if (indexTable[index] == null) {
+					System.out.println("No key with that index in file");
+				} else {
+					System.out.println(indexTable[index]);
+				}
+				break;
+			case 3:
+				hashTable.print();
+				break;
+			case 4:
+				for(int i = 0; i < indexTable.length; i++) {
+					System.out.println(i+":"+indexTable[i]);
+				}
+				break;
+			case 5:
+				return;
+			default:
+				System.out.println("Unknown command");
+			}
+		}
+	}
+	
+	public static Key getKey(Scanner input) {
+		System.out.println("Enter key in form: val1 val2 ...");
+		int[] vals = new int[Key.getKeySize()];
+		for(int i = 0; i < Key.getKeySize(); i++) {
+			if(input.hasNextInt()) {
+				vals[i] = input.nextInt();
+			} else {
+				System.out.println("Not enough integer key values");
+				input.nextLine(); // clear rest of line in buffer
+				return null;
+			}
+		}
+		input.nextLine(); // clear the rest of the line in buffer
+		
+		if (Key.checkVals(vals)) {
+			return new Key(vals);
+		} else {
+			return null;
+		}
+	}
+	
+	public static void printMemoryUsage() {
+		
+	}
+}

@@ -1,0 +1,87 @@
+package edu.ncsu.csc216.todolist.util;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class LinkedListTest {
+	LinkedList l;
+	@Before
+	public void setUp() throws Exception {
+		l = new LinkedList<Integer>();
+	}
+
+	@Test
+	public void testSize() {
+		//start should be 0
+		//expected 0, actual l.size()
+		assertEquals(0, l.size());
+		l.add(9);
+		//expected 1, actual l.size()
+		assertEquals(1, l.size());
+		l.add(12);
+		l.add(15);
+		l.add(18);
+		//expected 4, actual l.size()
+		assertEquals(4, l.size());
+		//remove on to be sure the size changes
+		l.remove(2);
+		//expected 3, actual l.size()
+		assertEquals(3, l.size());
+		//try to remove an object from an index out of bounds
+		try{
+			l.remove(4);
+			fail();
+		} catch(IndexOutOfBoundsException e){
+			//size should have not changed because nothing was removed
+			//expected 3, actual l.size()
+			assertEquals(3, l.size());
+		}
+		
+	}
+
+	@Test
+	public void testIsEmpty() {
+		//start should be 0
+		//expected 0, actual l.size()
+		assertEquals(0, l.size());
+		//since size is 0 that means that it should be empty
+		assertEquals(true, l.isEmpty());
+		//adds one to make list not empty
+		l.add(9);
+		//should no longer be empty
+		assertEquals(false, l.isEmpty());
+	}
+
+	@Test
+	public void testContains() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddObject() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGet() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddIntObject() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRemove() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testIndexOf() {
+		fail("Not yet implemented");
+	}
+
+}

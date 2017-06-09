@@ -1,0 +1,74 @@
+package edu.ncsu.csc216.predator_prey.gui;
+
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.general.Dataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
+/**
+ * This class creates and initializes the predator-prey population chart. It
+ * also provides methods for adding points and clearing all points from the
+ * chart.
+ * 
+ * @author Chris Bollinger
+ * 
+ */
+public class PredatorPreyChart extends JPanel {
+
+	/** The population chart */
+	JFreeChart chart;
+	/** The series of points that make up the prey population curve */
+	XYSeries preySeries;
+	/** The series of points that make up the predator population curve */
+	XYSeries predatorSeries;
+	/** The dataset that combines both the predator and prey series for graphing */
+	XYSeriesCollection dataSet;
+
+	/**
+	 * Constructs the predator-prey chart and adds it to the predatorPreyChart
+	 * JPanel to be displayed in the GUI.
+	 */
+	public PredatorPreyChart() {
+		preySeries = new XYSeries("Prey Series");
+		predatorSeries = new XYSeries("Predator Series");
+		dataSet = new XYSeriesCollection(predatorSeries);
+		dataSet.addSeries(preySeries);
+		chart = ChartFactory.createXYLineChart("Predator-Prey Series",
+				"Timesteps", "Number of each species", dataSet);
+		add(new ChartPanel(chart));
+		setPreferredSize(new Dimension(500, 270));
+		validate();
+	}
+
+	/**
+	 * Adds a new point to both the predator and prey data series.
+	 * 
+	 * @param timestep
+	 *            The time of the added data
+	 * @param numPrey
+	 *            The number of prey at the timestep
+	 * @param numPredator
+	 *            The number of predators at the timestep
+	 */
+	public void addDataPoint(int timestep, int numPrey, int numPredator) {
+		preySeries.add(timestep, numPrey);
+		predatorSeries.add(timestep, numPredator);
+
+	}
+
+	/**
+	 * Removes all the points currently on the predator-prey chart. When the
+	 * chart is cleared, all data on the chart is lost and cannot be restored.
+	 */
+	public void removeAllDataPoints() {
+		preySeries.clear();
+		predatorSeries.clear();
+	}
+}

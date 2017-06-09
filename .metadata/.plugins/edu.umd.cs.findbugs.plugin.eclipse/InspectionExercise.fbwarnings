@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.2" sequence="2" timestamp="1381859482971" analysisTimestamp="1381859479046" release="">
+  <Project projectName="InspectionExercise">
+    <Jar>C:\Users\chris\workspace\InspectionExercise\bin\inspection1\LogTableColumn.class</Jar>
+    <AuxClasspathEntry>C:\Users\chris\workspace\InspectionExercise\bin</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\eclipse\plugins\org.junit_4.11.0.v201303080030\junit.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\chris\workspace\InspectionExercise\lib\jcommon-1.0.17-junit.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\chris\workspace\InspectionExercise\lib\jcommon-1.0.17.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\chris\workspace\InspectionExercise\lib\jcommon-xml-1.0.17.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\chris\workspace\InspectionExercise\lib\log4j-1.2.17.jar</AuxClasspathEntry>
+    <SrcDir>C:\Users\chris\workspace\InspectionExercise\test</SrcDir>
+    <SrcDir>C:\Users\chris\workspace\InspectionExercise\src2</SrcDir>
+    <SrcDir>C:\Users\chris\workspace\InspectionExercise\src</SrcDir>
+    <Cloud id="edu.umd.cs.findbugs.cloud.doNothingCloud" online="false"></Cloud>
+  </Project>
+  <BugInstance type="ES_COMPARING_STRINGS_WITH_EQ" priority="2" abbrev="ES" category="BAD_PRACTICE" first="1">
+    <Class classname="inspection1.LogTableColumn">
+      <SourceLine classname="inspection1.LogTableColumn" sourcefile="LogTableColumn.java" sourcepath="inspection1/LogTableColumn.java"/>
+    </Class>
+    <Method classname="inspection1.LogTableColumn" name="equals" signature="(Ljava/lang/Object;)Z" isStatic="false">
+      <SourceLine classname="inspection1.LogTableColumn" start="98" end="107" startBytecode="0" endBytecode="14" sourcefile="LogTableColumn.java" sourcepath="inspection1/LogTableColumn.java"/>
+    </Method>
+    <Type descriptor="Ljava/lang/String;" role="TYPE_FOUND">
+      <SourceLine classname="java.lang.String"/>
+    </Type>
+    <Method classname="inspection1.LogTableColumn" name="getLabel" signature="()Ljava/lang/String;" isStatic="false" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="inspection1.LogTableColumn" start="69" end="69" startBytecode="0" endBytecode="46" sourcefile="LogTableColumn.java" sourcepath="inspection1/LogTableColumn.java"/>
+    </Method>
+    <SourceLine classname="inspection1.LogTableColumn" start="101" end="101" startBytecode="20" endBytecode="20" sourcefile="LogTableColumn.java" sourcepath="inspection1/LogTableColumn.java"/>
+  </BugInstance>
+  <BugInstance type="MS_EXPOSE_REP" priority="2" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="inspection1.LogTableColumn">
+      <SourceLine classname="inspection1.LogTableColumn" sourcefile="LogTableColumn.java" sourcepath="inspection1/LogTableColumn.java"/>
+    </Class>
+    <Method classname="inspection1.LogTableColumn" name="getLogTableColumnArray" signature="()[Linspection1/LogTableColumn;" isStatic="true">
+      <SourceLine classname="inspection1.LogTableColumn" start="127" end="127" startBytecode="0" endBytecode="35" sourcefile="LogTableColumn.java" sourcepath="inspection1/LogTableColumn.java"/>
+    </Method>
+    <Field classname="inspection1.LogTableColumn" name="_log4JColumns" signature="[Linspection1/LogTableColumn;" isStatic="true">
+      <SourceLine classname="inspection1.LogTableColumn" sourcefile="LogTableColumn.java" sourcepath="inspection1/LogTableColumn.java"/>
+    </Field>
+    <SourceLine classname="inspection1.LogTableColumn" start="127" end="127" startBytecode="3" endBytecode="3" sourcefile="LogTableColumn.java" sourcepath="inspection1/LogTableColumn.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Tue, 15 Oct 2013 13:51:19 -0400" total_classes="1" referenced_classes="16" total_bugs="2" total_size="60" num_packages="1" vm_version="23.25-b01" cpu_seconds="11.97" clock_seconds="3.94" peak_mbytes="299.42" alloc_mbytes="455.12" gc_seconds="0.07" priority_2="2">
+    <PackageStats package="inspection1" total_bugs="2" total_types="1" total_size="60" priority_2="2">
+      <ClassStats class="inspection1.LogTableColumn" sourceFile="LogTableColumn.java" interface="false" size="60" bugs="2" priority_2="2"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="772" invocations="330" avgMicrosecondsPerInvocation="2342" maxMicrosecondsPerInvocation="84559" standardDeviationMircosecondsPerInvocation="5753"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="455" invocations="331" avgMicrosecondsPerInvocation="1376" maxMicrosecondsPerInvocation="3849" standardDeviationMircosecondsPerInvocation="358"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="366" invocations="16" avgMicrosecondsPerInvocation="22900" maxMicrosecondsPerInvocation="90478" standardDeviationMircosecondsPerInvocation="28691"/>
+      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="320" invocations="2" avgMicrosecondsPerInvocation="160210" maxMicrosecondsPerInvocation="256057" standardDeviationMircosecondsPerInvocation="95847"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="255" invocations="299" avgMicrosecondsPerInvocation="854" maxMicrosecondsPerInvocation="23508" standardDeviationMircosecondsPerInvocation="1979"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="178" invocations="136" avgMicrosecondsPerInvocation="1313" maxMicrosecondsPerInvocation="6504" standardDeviationMircosecondsPerInvocation="1253"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="169" invocations="16" avgMicrosecondsPerInvocation="10584" maxMicrosecondsPerInvocation="45172" standardDeviationMircosecondsPerInvocation="13044"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="114" invocations="16" avgMicrosecondsPerInvocation="7128" maxMicrosecondsPerInvocation="27099" standardDeviationMircosecondsPerInvocation="8700"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.impl.ZipCodeBaseFactory" totalMilliseconds="108" invocations="21" avgMicrosecondsPerInvocation="5183" maxMicrosecondsPerInvocation="92415" standardDeviationMircosecondsPerInvocation="19507"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="98" invocations="16" avgMicrosecondsPerInvocation="6153" maxMicrosecondsPerInvocation="19947" standardDeviationMircosecondsPerInvocation="5831"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="81" invocations="16" avgMicrosecondsPerInvocation="5094" maxMicrosecondsPerInvocation="23362" standardDeviationMircosecondsPerInvocation="6665"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1381859477727" release="" codeSize="0" numClasses="0"/>
+    <AppVersion sequence="1" timestamp="1381859477747" release="" codeSize="60" numClasses="1"/>
+  </History>
+</BugCollection>

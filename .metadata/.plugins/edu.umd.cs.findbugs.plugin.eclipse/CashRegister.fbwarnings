@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.2" sequence="6" timestamp="1379296347049" analysisTimestamp="1379296345699" release="">
+  <Project projectName="CashRegister">
+    <Jar>C:\Users\chris\workspace\CashRegister\bin\edu\ncsu\csc216\cash_register\CurrencyTest.class</Jar>
+    <AuxClasspathEntry>C:\Users\chris\workspace\CashRegister\bin</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\eclipse\plugins\org.junit_4.11.0.v201303080030\junit.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\eclipse\plugins\org.hamcrest.core_1.3.0.v201303031735.jar</AuxClasspathEntry>
+    <SrcDir>C:\Users\chris\workspace\CashRegister\test</SrcDir>
+    <SrcDir>C:\Users\chris\workspace\CashRegister\src</SrcDir>
+    <Cloud id="edu.umd.cs.findbugs.cloud.doNothingCloud" online="false"></Cloud>
+  </Project>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" abbrev="EI" category="MALICIOUS_CODE" first="1">
+    <Class classname="edu.ncsu.csc216.cash_register.CurrencyCollection">
+      <SourceLine classname="edu.ncsu.csc216.cash_register.CurrencyCollection" sourcefile="CurrencyCollection.java" sourcepath="edu/ncsu/csc216/cash_register/CurrencyCollection.java"/>
+    </Class>
+    <Method classname="edu.ncsu.csc216.cash_register.CurrencyCollection" name="getCurrencyCollection" signature="()[Ledu/ncsu/csc216/cash_register/Currency;" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.cash_register.CurrencyCollection" start="161" end="161" startBytecode="0" endBytecode="46" sourcefile="CurrencyCollection.java" sourcepath="edu/ncsu/csc216/cash_register/CurrencyCollection.java"/>
+    </Method>
+    <Field classname="edu.ncsu.csc216.cash_register.CurrencyCollection" name="currency" signature="[Ledu/ncsu/csc216/cash_register/Currency;" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.cash_register.CurrencyCollection" sourcefile="CurrencyCollection.java" sourcepath="edu/ncsu/csc216/cash_register/CurrencyCollection.java"/>
+    </Field>
+    <SourceLine classname="edu.ncsu.csc216.cash_register.CurrencyCollection" start="161" end="161" startBytecode="4" endBytecode="4" sourcefile="CurrencyCollection.java" sourcepath="edu/ncsu/csc216/cash_register/CurrencyCollection.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" abbrev="Dm" category="I18N" first="1">
+    <Class classname="edu.ncsu.csc216.cash_register.NCSUBookstores">
+      <SourceLine classname="edu.ncsu.csc216.cash_register.NCSUBookstores" sourcefile="NCSUBookstores.java" sourcepath="edu/ncsu/csc216/cash_register/NCSUBookstores.java"/>
+    </Class>
+    <Method classname="edu.ncsu.csc216.cash_register.NCSUBookstores" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.cash_register.NCSUBookstores" start="53" end="56" startBytecode="0" endBytecode="83" sourcefile="NCSUBookstores.java" sourcepath="edu/ncsu/csc216/cash_register/NCSUBookstores.java"/>
+    </Method>
+    <Method classname="java.util.Scanner" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.util.Scanner"/>
+    </Method>
+    <SourceLine classname="edu.ncsu.csc216.cash_register.NCSUBookstores" start="55" end="55" startBytecode="23" endBytecode="23" sourcefile="NCSUBookstores.java" sourcepath="edu/ncsu/csc216/cash_register/NCSUBookstores.java"/>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" abbrev="Dm" category="BAD_PRACTICE" first="1">
+    <Class classname="edu.ncsu.csc216.cash_register.NCSUBookstores">
+      <SourceLine classname="edu.ncsu.csc216.cash_register.NCSUBookstores" sourcefile="NCSUBookstores.java" sourcepath="edu/ncsu/csc216/cash_register/NCSUBookstores.java"/>
+    </Class>
+    <Method classname="edu.ncsu.csc216.cash_register.NCSUBookstores" name="userInterface" signature="()V" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.cash_register.NCSUBookstores" start="62" end="64" startBytecode="0" endBytecode="238" sourcefile="NCSUBookstores.java" sourcepath="edu/ncsu/csc216/cash_register/NCSUBookstores.java"/>
+    </Method>
+    <SourceLine classname="edu.ncsu.csc216.cash_register.NCSUBookstores" start="72" end="72" startBytecode="30" endBytecode="30" sourcefile="NCSUBookstores.java" sourcepath="edu/ncsu/csc216/cash_register/NCSUBookstores.java"/>
+  </BugInstance>
+  <BugInstance type="VA_FORMAT_STRING_USES_NEWLINE" priority="2" abbrev="FS" category="BAD_PRACTICE" first="1">
+    <Class classname="edu.ncsu.csc216.cash_register.NCSUBookstores">
+      <SourceLine classname="edu.ncsu.csc216.cash_register.NCSUBookstores" sourcefile="NCSUBookstores.java" sourcepath="edu/ncsu/csc216/cash_register/NCSUBookstores.java"/>
+    </Class>
+    <Method classname="edu.ncsu.csc216.cash_register.NCSUBookstores" name="handleBalance" signature="()V" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.cash_register.NCSUBookstores" start="94" end="96" startBytecode="0" endBytecode="85" sourcefile="NCSUBookstores.java" sourcepath="edu/ncsu/csc216/cash_register/NCSUBookstores.java"/>
+    </Method>
+    <Method classname="java.io.PrintStream" name="printf" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.PrintStream"/>
+    </Method>
+    <String value="Current register balance: $%1$.2f\n" role="STRING_FORMAT_STRING"/>
+    <SourceLine classname="edu.ncsu.csc216.cash_register.NCSUBookstores" start="94" end="94" startBytecode="27" endBytecode="27" sourcefile="NCSUBookstores.java" sourcepath="edu/ncsu/csc216/cash_register/NCSUBookstores.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Sun, 15 Sep 2013 21:52:25 -0400" total_classes="1" referenced_classes="15" total_bugs="4" total_size="46" num_packages="1" vm_version="23.25-b01" cpu_seconds="1.72" clock_seconds="1.35" peak_mbytes="377.59" alloc_mbytes="455.12" gc_seconds="0.00" priority_2="3" priority_1="1">
+    <PackageStats package="edu.ncsu.csc216.cash_register" total_bugs="4" total_types="3" total_size="46" priority_2="3" priority_1="1">
+      <ClassStats class="edu.ncsu.csc216.cash_register.CurrencyTest" sourceFile="CurrencyTest.java" interface="false" size="46" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="353" invocations="315" avgMicrosecondsPerInvocation="1123" maxMicrosecondsPerInvocation="12667" standardDeviationMircosecondsPerInvocation="1781"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="319" invocations="316" avgMicrosecondsPerInvocation="1010" maxMicrosecondsPerInvocation="2062" standardDeviationMircosecondsPerInvocation="225"/>
+      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="147" invocations="2" avgMicrosecondsPerInvocation="73912" maxMicrosecondsPerInvocation="120099" standardDeviationMircosecondsPerInvocation="46187"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="75" invocations="284" avgMicrosecondsPerInvocation="267" maxMicrosecondsPerInvocation="2500" standardDeviationMircosecondsPerInvocation="402"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.impl.ZipCodeBaseFactory" totalMilliseconds="63" invocations="18" avgMicrosecondsPerInvocation="3547" maxMicrosecondsPerInvocation="57639" standardDeviationMircosecondsPerInvocation="13119"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="61" invocations="15" avgMicrosecondsPerInvocation="4069" maxMicrosecondsPerInvocation="17233" standardDeviationMircosecondsPerInvocation="5528"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1379296175456" release="" codeSize="0" numClasses="0"/>
+    <AppVersion sequence="1" timestamp="1379296175457" release="" codeSize="454" numClasses="7"/>
+    <AppVersion sequence="2" timestamp="1379296287484" release="" codeSize="63" numClasses="1"/>
+    <AppVersion sequence="3" timestamp="1379296303025" release="" codeSize="63" numClasses="1"/>
+    <AppVersion sequence="4" timestamp="1379296305403" release="" codeSize="34" numClasses="1"/>
+    <AppVersion sequence="5" timestamp="1379296327379" release="" codeSize="34" numClasses="1"/>
+  </History>
+</BugCollection>

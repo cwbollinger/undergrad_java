@@ -1,0 +1,72 @@
+/**
+ * 
+ */
+package edu.ncsu.csc216.cash_register;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * @author chris
+ *
+ */
+public class CurrencyTest {
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.cash_register.Currency#hashCode()}.
+	 */
+	@Test
+	public void testHashCode() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.cash_register.Currency#getValue()}.
+	 */
+	@Test
+	public void testGetValue() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.cash_register.Currency#getName()}.
+	 */
+	@Test
+	public void testGetName() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.cash_register.Currency#getCount()}.
+	 */
+	@Test
+	public void testGetCount() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.cash_register.Currency#modifyCount(int)}.
+	 */
+	@Test
+	public void testModifyCount() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.cash_register.Currency#equals(java.lang.Object)}.
+	 */
+	@Test
+	public void testEqualsObject() {
+		fail("Not yet implemented");
+	}
+
+}

@@ -1,0 +1,93 @@
+package edu.ncsu.csc216.todolist.model;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class CategoryTest {
+
+	Category test;
+	Category sameID;
+	Category diffID1;
+	Category diffID2;
+
+	@Before
+	public void setUp() throws Exception {
+		test = new Category("default", "the default", "1");
+		sameID = new Category("Same", "Same ID", "1");
+		diffID1 = new Category("Diff", "Different ID", "2");
+		diffID2 = new Category("Diff", "Different ID", "0");
+	}
+
+	@Test
+	public void testHashCode() {
+		assertEquals(sameID.hashCode(), test.hashCode());
+		assertNotEquals(diffID1.hashCode(), test.hashCode());
+		assertNotEquals(diffID2.hashCode(), test.hashCode());
+	}
+
+	@Test
+	public void testGetName() {
+		// expected is default, actual is test.getName()
+		assertEquals("default", test.getName());
+	}
+
+	@Test
+	public void testSetName() {
+		// this is before the name is changed so
+		// expected is default, actual is test.getName()
+		assertEquals("default", test.getName());
+		test.setName("Cole");
+		// after the name change the expected is Cole, actual is test.getName
+		assertEquals("Cole", test.getName());
+
+	}
+
+	@Test
+	public void testGetDescription() {
+		// expected is the default, actual is test.getDescription()
+		assertEquals("the default", test.getDescription());
+	}
+
+	@Test
+	public void testSetDescription() {
+		// expected is the default, actual is test.getDescription()
+		assertEquals("the default", test.getDescription());
+		// change desc to "new"
+		test.setDescription("new");
+		// expected is new, actual is test.getDescription()
+		assertEquals("new", test.getDescription());
+	}
+
+	@Test
+	public void testGetCategoryID() {
+		// expected is 1, actual is test.getDescription()
+		assertEquals("1", test.getCategoryID());
+	}
+
+	@Test
+	public void testEqualsObject() {
+
+		// ID is the only relevant field for Category comparison
+		assertTrue(test.equals(sameID));
+		assertFalse(test.equals(diffID1));
+	}
+
+	@Test
+	public void testCompareTo() {
+		// should return negative number when ID is lower than compared object
+		assertTrue(0 > test.compareTo(diffID1));
+		// should return positive number when ID is higher than compared object
+		assertTrue(0 < test.compareTo(diffID2));
+	}
+
+	@Test
+	public void testToString() {
+		// test that the toString method returns the category name
+		assertEquals("default", test.toString());
+		assertEquals("Same", sameID.toString());
+		assertEquals("Diff", diffID1.toString());
+	}
+
+}

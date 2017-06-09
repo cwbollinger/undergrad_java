@@ -1,0 +1,110 @@
+package edu.ncsu.csc216.todolist.util;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class ArrayListTest {
+
+	// Note that this is a custom ArrayList class, not the Java API version
+	ArrayList<Integer> list1;
+	ArrayList<Integer> list2;
+
+	@Before
+	public void setUp() throws Exception {
+		list1 = new ArrayList<Integer>();
+		list1.add(1);
+		list1.add(2);
+		list1.add(3);
+		list2 = new ArrayList<Integer>();
+	}
+
+	@Test
+	public void testAdd() {
+
+		int temp;
+		// add to front
+		list2.add(1);
+		assertEquals(1, list2.size());
+		temp = list2.get(0);
+		assertEquals(1, temp);
+
+		// add to end
+		list2.add(3);
+		assertEquals(2, list2.size());
+		temp = list2.get(0);
+		assertEquals(1, temp);
+		temp = list2.get(1);
+		assertEquals(3, temp);
+
+		// add to middle
+		list2.add(1, 2);
+		assertEquals(3, list2.size());
+		temp = list2.get(0);
+		assertEquals(1, temp);
+		temp = list2.get(1);
+		assertEquals(2, temp);
+		temp = list2.get(2);
+		assertEquals(3, temp);
+	}
+
+	public void testContains() {
+		// should return true if object is in list
+		assertTrue(list1.contains(1));
+		// should return false if object is not in list
+		assertFalse(list1.contains(5));
+		// should return false if nothing is in list
+		assertFalse(list2.contains(1));
+	}
+
+	public void testIndexOf() {
+		// should return the object at a given index
+		assertEquals(1, list1.indexOf(0));
+		assertEquals(2, list1.indexOf(1));
+		assertEquals(3, list1.indexOf(2));
+
+		// should return -1 if object is not in list
+		assertEquals(-1, list1.indexOf(5));
+	}
+
+	public void testGet() {
+		// should return the object at the given index
+		int temp = list1.get(0);
+		assertEquals(1, temp);
+
+		// throws an IndexOutOfBounds exception for invalid indices
+		try {
+			list1.get(-1);
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			// list should be the same as it was before call
+			assertEquals(3, list1.size());
+			temp = list1.get(0);
+			assertEquals(1, temp);
+			temp = list1.get(1);
+			assertEquals(2, temp);
+			temp = list1.get(2);
+			assertEquals(3, temp);
+
+		}
+	}
+
+	public void testIsEmpty() {
+		assertFalse(list1.isEmpty());
+		assertTrue(list2.isEmpty());
+	}
+
+	public void testRemove() {
+		// remove middle
+		list1.remove(1);
+		assertEquals(2, list1.size());
+		// remove end
+		list1.remove(1);
+		assertEquals(1, list1.size());
+		// remove front
+		list1.remove(0);
+		assertEquals(0, list1.size());
+	}
+
+}

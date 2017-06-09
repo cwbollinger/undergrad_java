@@ -1,0 +1,77 @@
+package edu.ncsu.csc216.predator_prey.model;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * Tests the implementation of the Territory class by focusing
+ * on small grids, and different values for initial probabilities of prey
+ * and predators.
+ * 
+ * @author Daniel Rice
+ */
+public class TerritoryTest {
+
+	/** An instance of the Territory class to help automate testing */
+	private Territory territory;
+
+	/**
+	 * Initializes the territory object.
+	 * @throws Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
+		territory = new Territory();
+	}
+
+	/**
+	 * Tests whether or not the simulation is done when the simulation
+	 * is out of either predators or prey.
+	 */
+	@Test
+	public void testIsDone() {
+		UserParams.instance().setPredatorInitialProbability(0);
+		UserParams.instance().setPreyInitialProbability(0);
+		territory = new Territory();
+		assertTrue(territory.isDone());
+	}
+
+	/**
+	 * Tests getting the cells of the territory, and getting the number
+	 * of cells that are empty.
+	 */
+	@Test
+	public void testGetTerritory() {
+		UserParams.instance().setPredatorInitialProbability(0);
+		UserParams.instance().setPreyInitialProbability(0);
+		UserParams.instance().setSize(19);
+		territory = new Territory();
+		//they should all be empty cells
+		Cell[][] cells = territory.getTerritory();
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells[i].length; j++) {
+				assertEquals(0, cells[i][j].getState());
+				assertEquals(361, territory.getNumEmpty());
+			}
+		}
+	}
+
+	/**
+	 * Tests updating the territory for the next time-step.
+	 */
+	@Test
+	public void testNextTimeStep() {
+		UserParams.instance().setSize(1);
+		UserParams.instance().setPredatorInitialProbability(1);
+		UserParams.instance().setPreyInitialProbability(0);
+		UserParams.instance().setPredatorIsolation(1);
+		territory = new Territory();
+		assertEquals(1, territory.getNumPredator());
+		territory.nextTimestep();
+		assertTrue(territory.isDone());
+		assertEquals(0, territory.getNumPredator());
+	}
+
+}

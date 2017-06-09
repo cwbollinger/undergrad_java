@@ -1,0 +1,81 @@
+package edu.ncsu.csc216.todolist.model;
+
+import java.util.Observable;
+import java.util.Observer;
+
+import edu.ncsu.csc216.todolist.util.ArrayList;
+
+public class CategoryList extends Observable implements Observer {
+	private static final long serialVersionUID = 984509L;
+	private String name;
+	private int nextCategoryNum;
+	private ArrayList<Category> list;
+	
+	public CategoryList(){
+		name = null;
+		nextCategoryNum= 1;
+		list = new ArrayList<Category>();
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public boolean addCategory(String name, String details){
+		boolean b = list.add(new Category(name, details, "C"+nextCategoryNum));
+		nextCategoryNum++;
+		return b;
+	}
+	
+	public Category getCategoryAt(int idx){
+		return (Category) list.get(idx);
+	}
+	
+	public int indexOf(String catID){
+		for(int i = 0; i < list.size(); i++){
+			if(((Category) list.get(i)).getCategoryID().equals(catID))
+				return i;
+		}
+		return -1;
+	}
+	
+	public int indexOfName(String name){
+		for(int i = 0; i < list.size(); i++){
+			if(((Category) list.get(i)).getName().equals(name))
+				return i;
+		}
+		return -1;
+	}
+	
+	public int size(){
+		return list.size();
+	}
+	
+	public boolean isEmpty(){
+		return list.isEmpty();
+	}
+	
+	public Category removeCategoryAt(int idx){
+		return (Category) list.remove(idx);
+	}
+	
+	public boolean removeCategory(String catID){
+		list.remove(this.indexOf(catID));
+		return true;
+	}
+	
+	public Object[][] get2DArray(){
+		Object[][] o = new Object[list.size()][2];
+		for(int i = 0; i < list.size(); i++){
+			o[i][0] = list.get(i).getName();
+			o[i][1] = list.get(i).getDescription();
+		}
+		return o;
+	}
+	
+	public void update(Observable obs, Object obj){
+		//TODO
+	}
+	
+
+}

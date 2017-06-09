@@ -1,0 +1,4 @@
+I used a radix-based sum as my first hash function, and a simple sum-mod hash for my second hash function.
+I used the radix-based hash because it used the order and value of the key data to create the hash.
+I used the sum-mod hash for my second hash function because I was not getting many collisions during hashing,
+and it is fast to calculate.

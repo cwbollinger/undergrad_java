@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.2" sequence="1" timestamp="1381268660563" analysisTimestamp="1381268649560" release="">
+  <Project projectName="FrequentFlyer">
+    <Jar>C:\Users\chris\workspace\FrequentFlyer\bin</Jar>
+    <AuxClasspathEntry>C:\Users\chris\workspace\FrequentFlyer\bin</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\eclipse\plugins\org.junit_4.11.0.v201303080030\junit.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\eclipse\plugins\org.hamcrest.core_1.3.0.v201303031735.jar</AuxClasspathEntry>
+    <SrcDir>C:\Users\chris\workspace\FrequentFlyer\test</SrcDir>
+    <SrcDir>C:\Users\chris\workspace\FrequentFlyer\src</SrcDir>
+    <Cloud id="edu.umd.cs.findbugs.cloud.doNothingCloud" online="false"></Cloud>
+  </Project>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" abbrev="Dm" category="I18N" first="1">
+    <Class classname="edu.ncsu.csc216.airline.airplane.Flight">
+      <SourceLine classname="edu.ncsu.csc216.airline.airplane.Flight" sourcefile="Flight.java" sourcepath="edu/ncsu/csc216/airline/airplane/Flight.java"/>
+    </Class>
+    <Method classname="edu.ncsu.csc216.airline.airplane.Flight" name="&lt;init&gt;" signature="(Ljava/lang/String;)V" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.airline.airplane.Flight" start="62" end="85" startBytecode="0" endBytecode="293" sourcefile="Flight.java" sourcepath="edu/ncsu/csc216/airline/airplane/Flight.java"/>
+    </Method>
+    <Method classname="java.util.Scanner" name="&lt;init&gt;" signature="(Ljava/io/File;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.util.Scanner"/>
+    </Method>
+    <SourceLine classname="edu.ncsu.csc216.airline.airplane.Flight" start="67" end="67" startBytecode="18" endBytecode="18" sourcefile="Flight.java" sourcepath="edu/ncsu/csc216/airline/airplane/Flight.java"/>
+  </BugInstance>
+  <BugInstance type="SBSC_USE_STRINGBUFFER_CONCATENATION" priority="2" abbrev="SBSC" category="PERFORMANCE" first="1">
+    <Class classname="edu.ncsu.csc216.airline.passengers.FlightReservation">
+      <SourceLine classname="edu.ncsu.csc216.airline.passengers.FlightReservation" sourcefile="FlightReservation.java" sourcepath="edu/ncsu/csc216/airline/passengers/FlightReservation.java"/>
+    </Class>
+    <Method classname="edu.ncsu.csc216.airline.passengers.FlightReservation" name="stringForPrint" signature="()Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.airline.passengers.FlightReservation" start="103" end="114" startBytecode="0" endBytecode="222" sourcefile="FlightReservation.java" sourcepath="edu/ncsu/csc216/airline/passengers/FlightReservation.java"/>
+    </Method>
+    <SourceLine classname="edu.ncsu.csc216.airline.passengers.FlightReservation" start="111" end="111" startBytecode="57" endBytecode="57" sourcefile="FlightReservation.java" sourcepath="edu/ncsu/csc216/airline/passengers/FlightReservation.java"/>
+  </BugInstance>
+  <BugInstance type="SBSC_USE_STRINGBUFFER_CONCATENATION" priority="2" abbrev="SBSC" category="PERFORMANCE" first="1">
+    <Class classname="edu.ncsu.csc216.airline.passengers.Manifest">
+      <SourceLine classname="edu.ncsu.csc216.airline.passengers.Manifest" sourcefile="Manifest.java" sourcepath="edu/ncsu/csc216/airline/passengers/Manifest.java"/>
+    </Class>
+    <Method classname="edu.ncsu.csc216.airline.passengers.Manifest" name="report" signature="()Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.airline.passengers.Manifest" start="64" end="68" startBytecode="0" endBytecode="134" sourcefile="Manifest.java" sourcepath="edu/ncsu/csc216/airline/passengers/Manifest.java"/>
+    </Method>
+    <SourceLine classname="edu.ncsu.csc216.airline.passengers.Manifest" start="66" end="66" startBytecode="24" endBytecode="24" sourcefile="Manifest.java" sourcepath="edu/ncsu/csc216/airline/passengers/Manifest.java"/>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" abbrev="Dm" category="BAD_PRACTICE" first="1">
+    <Class classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI">
+      <SourceLine classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" sourcefile="AirplaneSeatingGUI.java" sourcepath="edu/ncsu/csc216/airline/ui/AirplaneSeatingGUI.java"/>
+    </Class>
+    <Method classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" name="endExecution" signature="()V" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" start="359" end="360" startBytecode="0" endBytecode="50" sourcefile="AirplaneSeatingGUI.java" sourcepath="edu/ncsu/csc216/airline/ui/AirplaneSeatingGUI.java"/>
+    </Method>
+    <SourceLine classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" start="359" end="359" startBytecode="1" endBytecode="1" sourcefile="AirplaneSeatingGUI.java" sourcepath="edu/ncsu/csc216/airline/ui/AirplaneSeatingGUI.java"/>
+  </BugInstance>
+  <BugInstance type="NP_NULL_ON_SOME_PATH" priority="2" abbrev="NP" category="CORRECTNESS" first="1">
+    <Class classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI">
+      <SourceLine classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" sourcefile="AirplaneSeatingGUI.java" sourcepath="edu/ncsu/csc216/airline/ui/AirplaneSeatingGUI.java"/>
+    </Class>
+    <Method classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" name="actionPerformed" signature="(Ljava/awt/event/ActionEvent;)V" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" start="131" end="166" startBytecode="0" endBytecode="506" sourcefile="AirplaneSeatingGUI.java" sourcepath="edu/ncsu/csc216/airline/ui/AirplaneSeatingGUI.java"/>
+    </Method>
+    <LocalVariable name="newPassenger" register="5" pc="187" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <SourceLine classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" start="156" end="156" startBytecode="214" endBytecode="214" sourcefile="AirplaneSeatingGUI.java" sourcepath="edu/ncsu/csc216/airline/ui/AirplaneSeatingGUI.java" role="SOURCE_LINE_DEREF"/>
+    <SourceLine classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" start="149" end="149" startBytecode="119" endBytecode="119" sourcefile="AirplaneSeatingGUI.java" sourcepath="edu/ncsu/csc216/airline/ui/AirplaneSeatingGUI.java" role="SOURCE_LINE_NULL_VALUE"/>
+    <SourceLine classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" start="154" end="154" startBytecode="190" endBytecode="190" sourcefile="AirplaneSeatingGUI.java" sourcepath="edu/ncsu/csc216/airline/ui/AirplaneSeatingGUI.java" role="SOURCE_LINE_KNOWN_NULL"/>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD_STORE" priority="2" abbrev="Se" category="BAD_PRACTICE" first="1">
+    <Class classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI">
+      <SourceLine classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" sourcefile="AirplaneSeatingGUI.java" sourcepath="edu/ncsu/csc216/airline/ui/AirplaneSeatingGUI.java"/>
+    </Class>
+    <Field classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" name="myFlight" signature="Ledu/ncsu/csc216/airline/airplane/SeatManager;" isStatic="false">
+      <SourceLine classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" sourcefile="AirplaneSeatingGUI.java" sourcepath="edu/ncsu/csc216/airline/ui/AirplaneSeatingGUI.java"/>
+    </Field>
+    <Type descriptor="Ledu/ncsu/csc216/airline/airplane/Flight;" role="TYPE_FOUND">
+      <SourceLine classname="edu.ncsu.csc216.airline.airplane.Flight" start="62" end="500" sourcefile="Flight.java" sourcepath="edu/ncsu/csc216/airline/airplane/Flight.java"/>
+    </Type>
+    <SourceLine classname="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" start="102" end="102" startBytecode="363" endBytecode="363" sourcefile="AirplaneSeatingGUI.java" sourcepath="edu/ncsu/csc216/airline/ui/AirplaneSeatingGUI.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Tue, 8 Oct 2013 17:43:17 -0400" total_classes="14" referenced_classes="308" total_bugs="6" total_size="837" num_packages="3" vm_version="23.25-b01" cpu_seconds="22.54" clock_seconds="11.03" peak_mbytes="444.19" alloc_mbytes="455.12" gc_seconds="0.46" priority_2="5" priority_1="1">
+    <PackageStats package="edu.ncsu.csc216.airline.airplane" total_bugs="1" total_types="5" total_size="379" priority_1="1">
+      <ClassStats class="edu.ncsu.csc216.airline.airplane.Flight" sourceFile="Flight.java" interface="false" size="197" bugs="1" priority_1="1"/>
+      <ClassStats class="edu.ncsu.csc216.airline.airplane.Seat" sourceFile="Seat.java" interface="false" size="26" bugs="0"/>
+      <ClassStats class="edu.ncsu.csc216.airline.airplane.SeatManager" sourceFile="SeatManager.java" interface="true" size="6" bugs="0"/>
+      <ClassStats class="edu.ncsu.csc216.airline.airplane.TestFlight" sourceFile="TestFlight.java" interface="false" size="118" bugs="0"/>
+      <ClassStats class="edu.ncsu.csc216.airline.airplane.TestSeat" sourceFile="TestSeat.java" interface="false" size="32" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="edu.ncsu.csc216.airline.passengers" total_bugs="2" total_types="7" total_size="203" priority_2="2">
+      <ClassStats class="edu.ncsu.csc216.airline.passengers.Business" sourceFile="Business.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="edu.ncsu.csc216.airline.passengers.Coach" sourceFile="Coach.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="edu.ncsu.csc216.airline.passengers.FirstClass" sourceFile="FirstClass.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="edu.ncsu.csc216.airline.passengers.FlightReservation" sourceFile="FlightReservation.java" interface="false" size="40" bugs="1" priority_2="1"/>
+      <ClassStats class="edu.ncsu.csc216.airline.passengers.Manifest" sourceFile="Manifest.java" interface="false" size="24" bugs="1" priority_2="1"/>
+      <ClassStats class="edu.ncsu.csc216.airline.passengers.TestFlightReservation" sourceFile="TestFlightReservation.java" interface="false" size="47" bugs="0"/>
+      <ClassStats class="edu.ncsu.csc216.airline.passengers.TestManifest" sourceFile="TestManifest.java" interface="false" size="51" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="edu.ncsu.csc216.airline.ui" total_bugs="3" total_types="2" total_size="255" priority_2="3">
+      <ClassStats class="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI" sourceFile="AirplaneSeatingGUI.java" interface="false" size="246" bugs="3" priority_2="3"/>
+      <ClassStats class="edu.ncsu.csc216.airline.ui.AirplaneSeatingGUI$1" sourceFile="AirplaneSeatingGUI.java" interface="false" size="9" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="1688" invocations="1507" avgMicrosecondsPerInvocation="1120" maxMicrosecondsPerInvocation="4688" standardDeviationMircosecondsPerInvocation="302"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="1677" invocations="1504" avgMicrosecondsPerInvocation="1115" maxMicrosecondsPerInvocation="101148" standardDeviationMircosecondsPerInvocation="3708"/>
+      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="863" invocations="2" avgMicrosecondsPerInvocation="431688" maxMicrosecondsPerInvocation="479882" standardDeviationMircosecondsPerInvocation="48194"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="771" invocations="308" avgMicrosecondsPerInvocation="2503" maxMicrosecondsPerInvocation="83357" standardDeviationMircosecondsPerInvocation="6055"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="450" invocations="86" avgMicrosecondsPerInvocation="5242" maxMicrosecondsPerInvocation="128473" standardDeviationMircosecondsPerInvocation="14413"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="443" invocations="1456" avgMicrosecondsPerInvocation="304" maxMicrosecondsPerInvocation="11418" standardDeviationMircosecondsPerInvocation="692"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="438" invocations="308" avgMicrosecondsPerInvocation="1422" maxMicrosecondsPerInvocation="111256" standardDeviationMircosecondsPerInvocation="6554"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="324" invocations="86" avgMicrosecondsPerInvocation="3769" maxMicrosecondsPerInvocation="31885" standardDeviationMircosecondsPerInvocation="5543"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="314" invocations="92" avgMicrosecondsPerInvocation="3419" maxMicrosecondsPerInvocation="31638" standardDeviationMircosecondsPerInvocation="5519"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="287" invocations="86" avgMicrosecondsPerInvocation="3340" maxMicrosecondsPerInvocation="40169" standardDeviationMircosecondsPerInvocation="5748"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="257" invocations="721" avgMicrosecondsPerInvocation="357" maxMicrosecondsPerInvocation="7512" standardDeviationMircosecondsPerInvocation="447"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="256" invocations="86" avgMicrosecondsPerInvocation="2977" maxMicrosecondsPerInvocation="19384" standardDeviationMircosecondsPerInvocation="3759"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="211" invocations="91" avgMicrosecondsPerInvocation="2329" maxMicrosecondsPerInvocation="20360" standardDeviationMircosecondsPerInvocation="3261"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ExplicitSerialization" totalMilliseconds="165" invocations="308" avgMicrosecondsPerInvocation="537" maxMicrosecondsPerInvocation="47382" standardDeviationMircosecondsPerInvocation="3465"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="145" invocations="308" avgMicrosecondsPerInvocation="471" maxMicrosecondsPerInvocation="7542" standardDeviationMircosecondsPerInvocation="851"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1381268660562" release="" codeSize="0" numClasses="0"/>
+  </History>
+</BugCollection>

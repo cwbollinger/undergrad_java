@@ -1,0 +1,84 @@
+
+public class HashTable {
+
+	private Key[] table;
+	private int tableSize;
+	
+	private int numInserts = 0;
+	private int num_collisions = 0;
+	
+	public HashTable(int tableSize) {
+		table = new Key[tableSize];
+		this.tableSize = tableSize;
+	}
+	
+	public boolean addKey(Key k) {
+		if (numInserts == tableSize) {
+			return false;
+		}
+		int location = hash(k);
+		int jump = hash2(k);
+		System.out.println("Location: "+location+", Jump: "+jump);
+		while (table[location] != null) {
+			location += jump;
+			num_collisions++;
+			location %= tableSize;
+		}
+		table[location] = k;
+		numInserts++;
+		return true;
+	}
+	
+	public int getIndex(Key k) {
+		if (k == null) {
+			return -1;
+		}
+		int location = hash(k);
+		int jump = hash2(k);
+		while (!k.equals(table[location])) {
+			if (table[location] == null) { // we have reached the end of the chain but there is no matching key
+				return -1;
+			}
+			location += jump;
+			location %= tableSize;
+		}
+		return table[location].getIndex();
+	}
+	
+	public int hash(Key k) {
+		int hashSum = 0;
+		int[] vals = k.getVals();
+		for (int i = 0; i < Key.getKeySize(); i++) {
+			hashSum += vals[i]*Math.pow(Key.getMaxVals()[i], i);
+		}
+		return hashSum % tableSize;
+	}
+	
+	public int hash2(Key k) {
+		int hashSum = 0;
+		String hashString = "";
+		int[] vals = k.getVals();
+		for (int i = 0; i < Key.getKeySize(); i++) {
+			hashString += Integer.toString(vals[i]);
+			hashSum += vals[i];
+		}
+		return (hashSum % tableSize-1)+1; // make sure that the second hash can never be 0
+	}
+	
+	public void print() {
+		for(int i = 0; i < tableSize; i++) {
+			if(table[i] != null) { // there's a key in this slot
+				System.out.println(i+":	"+table[i].toString());
+			} else {
+				System.out.println(i+":	No key");
+			}
+		}
+		System.out.println("Number of Collisions: "+num_collisions);
+		System.out.println("Table size: "+tableSize);
+
+	}
+	
+	public int size() {
+		return tableSize;
+	}
+}

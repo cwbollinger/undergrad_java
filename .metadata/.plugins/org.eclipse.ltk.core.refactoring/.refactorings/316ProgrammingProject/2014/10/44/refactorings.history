@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;place&apos; in &apos;HashTable.addKey(...)&apos; to &apos;location&apos;&#x0D;&#x0A;- Original project: &apos;316ProgrammingProject&apos;&#x0D;&#x0A;- Original element: &apos;HashTable.addKey(Key).place&apos;&#x0D;&#x0A;- Renamed element: &apos;place&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;place&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{HashTable.java[HashTable~addKey~QKey;@place!258!277!262!266!I!0!false" name="location" references="true" stamp="1414456590413" version="1.0"/>
+</session>

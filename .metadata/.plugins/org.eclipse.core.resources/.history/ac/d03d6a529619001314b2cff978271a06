@@ -1,0 +1,121 @@
+/**
+ * 
+ */
+package edu.ncsu.csc216.cash_register;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * @author chris
+ * 
+ */
+public class CurrencyTest {
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.cash_register.Currency#hashCode()}
+	 * .
+	 */
+	@Test
+	public void testHashCode() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.cash_register.Currency#getValue()}
+	 * .
+	 * 
+	 * The test determines if the value returned from the Currency object is the
+	 * same as what the value was initialized to.
+	 */
+	@Test
+	public void testGetValue() {
+		// Start with 10 pennies
+		// The construction of the penny object is our description/input
+		Currency penny = new Currency(CurrencyCollection.PENNY_VALUE,
+				CurrencyCollection.PENNY_NAME, 10);
+		// The PENNY_VALUE constant is our expected value
+		// The actual value is the call to the getValue() method
+		assertEquals(CurrencyCollection.PENNY_VALUE, penny.getValue());
+
+		// Start with 5 dollars
+		// The construction of the dollar object is our description/input
+		Currency dollar = new Currency(CurrencyCollection.ONE_VALUE,
+				CurrencyCollection.ONE_NAME, 5);
+		// The ONE_VALUE constant is our expected value
+		// The actual value is the call to the getValue method
+		assertEquals(CurrencyCollection.ONE_VALUE, dollar.getValue());
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.cash_register.Currency#getName()}.
+	 */
+	@Test
+	public void testGetName() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.cash_register.Currency#getCount()}
+	 * .
+	 */
+	@Test
+	public void testGetCount() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for
+	 * {@link edu.ncsu.csc216.cash_register.Currency#modifyCount(int)}.
+	 * 
+	 * The test uses the getCount() method to understand how the count is
+	 * changed when using the modifyCount() method
+	 */
+	@Test
+	public void testModifyCount() {
+		// Create a currency object with the value of a penny
+		// and an initial count of 10
+		Currency penny = new Currency(CurrencyCollection.PENNY_VALUE,
+				CurrencyCollection.PENNY_NAME, 10);
+
+		// Ensure we're starting with 10 pennies
+		// We can't assume that the getCount() method has been tested at this
+		// point
+		// so this is our sanity check that we can use the getCount() method to
+		// evaluate
+		// modifyCount()
+		// 10 is our expected value and penny.getCount() is our actual value
+		assertEquals(10, penny.getCount());
+
+		// Increase the count of pennies by 3
+		penny.modifyCount(3);
+
+		// Check that the count changed
+		assertEquals(13, penny.getCount());
+
+		// Decrease the count of pennies by 5
+		penny.modifyCount(-5);
+
+		// Check that the count changed
+		assertEquals(8, penny.getCount());
+	}
+
+	/**
+	 * Test method for
+	 * {@link edu.ncsu.csc216.cash_register.Currency#equals(java.lang.Object)}.
+	 */
+	@Test
+	public void testEqualsObject() {
+		fail("Not yet implemented");
+	}
+
+}

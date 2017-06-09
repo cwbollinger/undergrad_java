@@ -1,0 +1,101 @@
+package edu.ncsu.csc216.todolist.model;
+
+import java.io.Serializable;
+import java.util.Observable;
+import java.util.Observer;
+
+public class Category extends Observable implements Comparable<Category>, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 459188L;
+	private String name;
+	private String details;
+	private String categoryID;
+	
+	public Category(String name, String details, String id) {
+		setName(name);
+		if(id == null || id == "")
+			throw new IllegalArgumentException();
+		this.details = details;
+		this.categoryID = id;
+		setChanged();
+		notifyObservers(this);
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public void setName(String name){
+		if(name == null || name == "")
+			throw new IllegalArgumentException();
+		this.name = name;
+		setChanged();
+		notifyObservers(this);
+	}
+	
+	public String getDescription(){
+		return details;
+	}
+	public void setDescription(String details){
+		this.details = details;
+		setChanged();
+		notifyObservers(this);
+	}
+	
+	public String getCategoryID(){
+		return categoryID;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Category other = (Category) obj;
+		if (categoryID == null) {
+			if (other.categoryID != null)
+				return false;
+		} else if (!categoryID.equals(other.categoryID))
+			return false;
+		if (details == null) {
+			if (other.details != null)
+				return false;
+		} else if (!details.equals(other.details))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+	
+	public int compareTo(Category c){
+		return categoryID.compareTo(c.getCategoryID());
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((categoryID == null) ? 0 : categoryID.hashCode());
+		result = prime * result + ((details == null) ? 0 : details.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+
+
+}

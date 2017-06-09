@@ -1,0 +1,108 @@
+package edu.ncsu.csc216.todolist.model;
+
+import static org.junit.Assert.*;
+
+import java.util.Date;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class TaskTest {
+	Task testTask;
+	
+	@Before
+	public void setUp() throws Exception {
+		testTask = new Task("title", "details", new Date(), new Date(), new Category("default", "the default", "1"), "T1");
+	}
+
+	@Test
+	public void testGetTitle() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetTitle() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetDetails() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetDetails() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetDueDateTime() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetDueDateTime() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetStartDateTime() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetStartDateTime() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetCompletedDateTime() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetCompletedDateTime() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testIsCompleted() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetCompleted() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetCategory() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetCategory() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetTaskID() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testEqualsObject() {
+		
+	}
+
+	@Test
+	public void testHasCode() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCompareTo() {
+		fail("Not yet implemented");
+	}
+
+}

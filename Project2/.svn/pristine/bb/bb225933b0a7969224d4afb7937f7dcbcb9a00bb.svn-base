@@ -1,0 +1,175 @@
+package edu.ncsu.csc216.todolist.util;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class ListTest {
+
+	// Note that this is a custom ArrayList class, not the Java API version
+	ArrayList<Integer> arrayList;
+	ArrayList<Integer> emptyArrayList;
+	// Note that this is a custom ArrayList class, not the Java API version
+	LinkedList<Integer> linkedList;
+	LinkedList<Integer> emptyLinkedList;
+
+	@Before
+	public void setUp() throws Exception {
+		arrayList = new ArrayList<Integer>();
+		arrayList.add(1);
+		arrayList.add(2);
+		arrayList.add(3);
+		emptyArrayList = new ArrayList<Integer>();
+		linkedList = new LinkedList<Integer>();
+		linkedList.add(1);
+		linkedList.add(2);
+		linkedList.add(3);
+		emptyLinkedList = new LinkedList<Integer>();
+	}
+
+	@Test
+	public void testAdd() {
+
+		int temp;
+		// add to front
+		emptyArrayList.add(1);
+		emptyLinkedList.add(1);
+		assertEquals(1, emptyArrayList.size());
+		assertEquals(1, emptyLinkedList.size());
+		temp = emptyArrayList.get(0);
+		assertEquals(1, temp);
+		temp = emptyLinkedList.get(0);
+		assertEquals(1, temp);
+
+		// add to end
+		emptyArrayList.add(3);
+		emptyLinkedList.add(3);
+		assertEquals(2, emptyArrayList.size());
+		assertEquals(2, emptyLinkedList.size());
+		temp = emptyArrayList.get(0);
+		assertEquals(1, temp);
+		temp = emptyLinkedList.get(0);
+		assertEquals(1, temp);
+		temp = emptyArrayList.get(1);
+		assertEquals(3, temp);
+		temp = emptyLinkedList.get(1);
+		assertEquals(3, temp);
+
+		// add to middle
+		emptyArrayList.add(1, 2);
+		emptyLinkedList.add(1, 2);
+		assertEquals(3, emptyArrayList.size());
+		assertEquals(3, emptyLinkedList.size());
+		temp = emptyArrayList.get(0);
+		assertEquals(1, temp);
+		temp = emptyLinkedList.get(0);
+		assertEquals(1, temp);
+		temp = emptyArrayList.get(1);
+		assertEquals(2, temp);
+		temp = emptyLinkedList.get(1);
+		assertEquals(2, temp);
+		temp = emptyArrayList.get(2);
+		assertEquals(3, temp);
+		temp = emptyLinkedList.get(2);
+		assertEquals(3, temp);
+	}
+
+	@Test
+	public void testContains() {
+		// should return true if object is in list
+		assertTrue(arrayList.contains(1));
+		assertTrue(linkedList.contains(1));
+		// should return false if object is not in list
+		assertFalse(arrayList.contains(5));
+		assertFalse(linkedList.contains(5));
+		// should return false if nothing is in list
+		assertFalse(emptyArrayList.contains(1));
+		assertFalse(emptyLinkedList.contains(1));
+	}
+
+	@Test
+	public void testIndexOf() {
+		// should return the object at a given index
+		assertEquals(0, arrayList.indexOf(1));
+		assertEquals(1, arrayList.indexOf(2));
+		assertEquals(2, arrayList.indexOf(3));
+
+		assertEquals(0, linkedList.indexOf(1));
+		assertEquals(1, linkedList.indexOf(2));
+		assertEquals(2, linkedList.indexOf(3));
+
+		// should return -1 if object is not in list
+		assertEquals(-1, arrayList.indexOf(5));
+		assertEquals(-1, linkedList.indexOf(5));
+	}
+
+	@Test
+	public void testGet() {
+		// should return the object at the given index
+		int temp = arrayList.get(0);
+		assertEquals(1, temp);
+		temp = linkedList.get(0);
+		assertEquals(1, temp);
+
+		// throws an IndexOutOfBounds exception for invalid indices
+		try {
+			arrayList.get(-1);
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			// list should be the same as it was before call
+			assertEquals(3, arrayList.size());
+			temp = arrayList.get(0);
+			assertEquals(1, temp);
+			temp = arrayList.get(1);
+			assertEquals(2, temp);
+			temp = arrayList.get(2);
+			assertEquals(3, temp);
+		}
+
+		try {
+			linkedList.get(-1);
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			// list should be the same as it was before call
+			assertEquals(3, linkedList.size());
+			temp = linkedList.get(0);
+			assertEquals(1, temp);
+			temp = linkedList.get(1);
+			assertEquals(2, temp);
+			temp = linkedList.get(2);
+			assertEquals(3, temp);
+		}
+	}
+
+	@Test
+	public void testIsEmpty() {
+		assertFalse(arrayList.isEmpty());
+		assertTrue(emptyArrayList.isEmpty());
+
+		assertFalse(linkedList.isEmpty());
+		assertTrue(emptyLinkedList.isEmpty());
+	}
+
+	@Test
+	public void testRemove() {
+		// remove middle
+		arrayList.remove(1);
+		assertEquals(2, arrayList.size());
+		linkedList.remove(1);
+		assertEquals(2, linkedList.size());
+
+		// remove end
+		arrayList.remove(1);
+		assertEquals(1, arrayList.size());
+		linkedList.remove(1);
+		assertEquals(1, linkedList.size());
+
+		// remove front
+		arrayList.remove(0);
+		assertEquals(0, arrayList.size());
+		linkedList.remove(0);
+		assertEquals(0, linkedList.size());
+	}
+
+}

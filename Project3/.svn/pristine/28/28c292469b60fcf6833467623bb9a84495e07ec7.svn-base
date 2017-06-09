@@ -1,0 +1,72 @@
+package edu.ncsu.csc216.predator_prey.gui;
+
+import javax.swing.JPanel;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
+/**
+ * Creates the chart that shows the number of predators and prey
+ * for each time-step during the simulation.
+ * @author Daniel Rice
+ *
+ */
+public class PredatorPreyChart extends JPanel {
+
+	/**
+	 * The Serializable number.
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/** The chart that shows the number of predators and prey */
+	private JFreeChart chart;
+
+	/** The number of prey in the simulation */
+	private XYSeries preySeries;
+
+	/** The number of predator in the simulation */
+	private XYSeries predatorSeries;
+
+	/** The collection of the number of predators and prey in the simulation */
+	private XYSeriesCollection dataset;
+
+	/**
+	 * Constructs the JFreeChart. I used information from the JFreeChart
+	 * API at http://www.jfree.org/jfreechart/api/javadoc/index.html, and looked
+	 * at an example from http://www.jfree.org/phpBB2/viewtopic.php?f=3&t=116514#p176371
+	 */
+	public PredatorPreyChart() {
+		preySeries = new XYSeries("Prey");
+		predatorSeries = new XYSeries("Predator");
+		dataset = new XYSeriesCollection();
+		dataset.addSeries(predatorSeries);
+		dataset.addSeries(preySeries);
+		chart = ChartFactory.createXYLineChart("Predator-Prey Populations", "Timesteps", "Number of each species", dataset);
+		ChartPanel obj = new ChartPanel(chart);
+		this.add(obj);
+		setVisible(true);
+		validate();
+	}
+
+	/**
+	 * Adds a data point to the chart.
+	 * @param timestep the time since the simulation began
+	 * @param numPrey the number of prey in the simulation
+	 * @param numPredators the number of predators in the simulation
+	 */
+	public void addDataPoint(int timestep, int numPrey, int numPredators) {
+		preySeries.add(timestep, numPrey);
+		predatorSeries.add(timestep, numPredators);
+	}
+
+	/**
+	 * Removes all of the data points from the chart.
+	 */
+	public void removeAllDataPoints() {
+		preySeries.clear();
+		predatorSeries.clear();
+	}
+}

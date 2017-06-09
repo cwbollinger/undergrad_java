@@ -1,0 +1,138 @@
+package edu.ncsu.csc216.todolist.model;
+
+import java.io.Serializable;
+import java.util.Observable;
+import java.util.Observer;
+
+import edu.ncsu.csc216.todolist.util.ArrayList;
+
+public class CategoryList extends Observable implements Observer, Serializable {
+	private static final long serialVersionUID = 984509L;
+	private String name;
+	private int nextCategoryNum;
+	private ArrayList<Category> list;
+	private boolean sorted;
+
+	public CategoryList() {
+		name = "Categories";
+		nextCategoryNum = 1;
+		list = new ArrayList<Category>();
+		sorted = false;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public boolean addCategory(String name, String details) {
+		Category c = new Category(name, details, "C" + nextCategoryNum);
+		c.addObserver(this);
+		boolean b = list.add(c);
+		nextCategoryNum++;
+
+		sort();
+		setChanged();
+		notifyObservers(this);
+		return b;
+	}
+
+	private void sort() {
+		Category temp;
+		while (!isSorted()) {
+			for (int i = 0; i < list.size() - 1; i++) {
+				if (list.get(i).compareTo(list.get(i + 1)) > 0) {
+					temp = list.get(i);
+					list.remove(i);
+					list.add(i + 1, temp);
+				}
+			}
+		}
+	}
+
+	private boolean isSorted() {
+		if (list.size() <= 1)
+			return true;
+		for (int i = 0; i < list.size() - 1; i++) {
+			if (list.get(i).compareTo(list.get(i + 1)) > 1)
+				return false;
+		}
+		return true;
+	}
+
+	public Category getCategoryAt(int idx) {
+		if (idx < 0 || idx >= list.size())
+			throw new IndexOutOfBoundsException();
+		return (Category) list.get(idx);
+	}
+
+	public int indexOf(String catID) {
+		for (int i = 0; i < list.size(); i++) {
+			if (((Category) list.get(i)).getCategoryID().equals(catID))
+				return i;
+		}
+		return -1;
+	}
+
+	public int indexOfName(String name) {
+		for (int i = 0; i < list.size(); i++) {
+			if (((Category) list.get(i)).getName().equals(name))
+				return i;
+		}
+		return -1;
+	}
+
+	public int size() {
+		return list.size();
+	}
+
+	public boolean isEmpty() {
+		return list.isEmpty();
+	}
+
+	public Category removeCategoryAt(int idx) {
+
+		if (idx < 0 || idx >= list.size())
+			throw new IndexOutOfBoundsException();
+		Category b = (Category) list.remove(idx);
+		sort();
+		setChanged();
+		notifyObservers(this);
+		return b;
+	}
+
+	public boolean removeCategory(String catID) {
+		int idx = this.indexOf(catID);
+		if (idx != -1) {
+			list.remove(idx);
+			sort();
+			setChanged();
+			notifyObservers(this);
+			return true;
+		}
+		return false;
+	}
+
+	public Object[][] get2DArray() {
+		Object[][] o = new Object[list.size()][3];
+		for (int i = 0; i < list.size(); i++) {
+			o[i][0] = list.get(i).getCategoryID();
+			o[i][1] = list.get(i).getName();
+			o[i][2] = list.get(i).getDescription();
+		}
+		return o;
+	}
+
+	public void update(Observable obs, Object obj) {
+		if (list.contains(obj)) {
+			setChanged();
+			notifyObservers(obj);
+			setChanged();
+			notifyObservers(this);
+		}
+		//
+		// setChanged();
+		// notifyObservers(this);
+		// TODO
+	}
+
+}

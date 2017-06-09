@@ -1,0 +1,88 @@
+package edu.ncsu.csc216.todolist.model;
+
+import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
+
+import edu.ncsu.csc216.todolist.util.LinkedList;
+
+public class TaskList extends Observable implements Observer{
+	private static final long serialVersionUID = 98734509L;
+	private String name;
+	private int nextTaskNum;
+	private String taskListID;
+	private LinkedList<Task> list;
+	
+	public TaskList(String name, String taskListID){
+		this.name = name;
+		this.taskListID = taskListID;
+		list = new LinkedList<Task>();
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
+	
+	public String getTaskListID(){
+		return taskListID;
+	}
+	
+	public boolean addTask(String name, String detials, Date start, Date due, Category cat){
+		boolean b = list.add(new Task(name, detials, start, due, cat, taskListID));
+		nextTaskNum++;
+		return b;
+	}
+	
+	public Task getTaskAt(int idx){
+		return (Task) list.get(idx);
+	}
+	
+	public int indexOf(String name){
+		for(int i = 0; i < list.size(); i++){
+			if(((Task) list.get(i)).getTitle().equals(name))
+				return i;
+		}
+		return -1;
+	}
+	
+	public int size(){
+		return list.size();
+	}
+	
+	public boolean isEmpty(){
+		return list.isEmpty();
+	}
+	
+	public Task removeTaskAt(int idx){
+		return (Task) list.remove(idx);
+	}
+	
+	public boolean removeTask(String name){
+		return true;
+	}
+	
+	public Object[][] get2DArray(){
+		Object[][] o = new Object[list.size()][8];
+		for(int i = 0; i < list.size(); i++){
+			o[i][0] = ((Task)list.get(i)).getTaskID();
+			o[i][1] = ((Task)list.get(i)).getTitle();
+			o[i][2] = ((Task)list.get(i)).getDetails();
+			o[i][3] = ((Task)list.get(i)).getStartDateTime();
+			o[i][4] = ((Task)list.get(i)).getDueDateTime();
+			o[i][5] = ((Task)list.get(i)).getCompletedDateTime();
+			o[i][6] = ((Task)list.get(i)).isCompleted();
+			o[i][7] = ((Task)list.get(i)).getCategory();
+		}
+		return o;
+	}
+	
+	public void update(Observable obs, Object obj){
+		//TODO
+	}
+	
+	
+}

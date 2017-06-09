@@ -1,0 +1,187 @@
+package edu.ncsu.csc216.predator_prey.gui;
+
+import java.awt.GridLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import edu.ncsu.csc216.predator_prey.model.UserParams;
+
+/**
+ * The class that allows the user to input values for the
+ * simulation variables.
+ * @author Daniel Rice
+ * @author Christopher Bollinger
+ *
+ */
+public class UserParamsPanel extends JPanel {
+
+	/** The serializable number */
+	private static final long serialVersionUID = 1L;
+
+
+	/** The text field for the preyLoneliness variable */
+	private JTextField preyLoneliness;
+
+	/** The text field for the preyEaten variable */
+	private JTextField preyEaten;
+
+	/** The text field for the predatorIsolation variable */
+	private JTextField predatorIsolation;
+
+	/** The text field for the predatorStarvation variable */
+	private JTextField predatorStarvation;
+
+	/** The text field for the predatorLoneliness variable */
+	private JTextField predatorLoneliness;
+
+	/** The text field for the preyReproduction variable */
+	private JTextField preyReproduction;
+
+	/** The text field for the predatorReproduction variable */
+	private JTextField predatorReproduction;
+
+	/** The text field for the preySurvivalWhenPredators variable */
+	private JTextField preySurvivalWhenPredators;
+
+	/** The text field for the predatorSurvivalWhenPrey variable */
+	private JTextField predatorSurvivalWhenPrey;
+
+	/** The text field for the preyInitialProbability variable */
+	private JTextField preyInitialProbability;
+
+	/** The text field for the predatorInitialProbability variable */
+	private JTextField predatorInitialProbability;
+
+	/**
+	 * Constructs the UserParamsPanel and initializes the text fields with labels
+	 * showing the user what every text field is used for in the simulation.
+	 */
+	public UserParamsPanel() {
+		super();
+		this.setLayout(new GridLayout(11, 2));
+		preyLoneliness = new JTextField();
+		add(new JLabel("Prey Loneliness"));
+		
+		add(preyLoneliness);
+		add(new JLabel("Prey Eaten"));
+		preyEaten = new JTextField();
+		
+		add(preyEaten);
+		add(new JLabel("Predator Isolation"));
+		predatorIsolation = new JTextField();
+		
+		add(predatorIsolation);
+		add(new JLabel("Predator Starvation"));
+		predatorStarvation = new JTextField();
+		add(predatorStarvation);
+		add(new JLabel("Predator Loneliness"));
+		predatorLoneliness = new JTextField();
+		add(predatorLoneliness);
+		add(new JLabel ("Prey Reproduction"));
+		preyReproduction = new JTextField();
+		add(preyReproduction);
+		add(new JLabel ("Predator Reproduction"));
+		predatorReproduction = new JTextField();
+		add(predatorReproduction);
+		add(new JLabel ("Prey Survival when Predators"));
+		preySurvivalWhenPredators = new JTextField();
+		add(preySurvivalWhenPredators);
+		add(new JLabel ("Predator Survival when Prey"));
+		predatorSurvivalWhenPrey = new JTextField();
+		add(predatorSurvivalWhenPrey);
+		add(new JLabel ("Prey Initial Probability"));
+		preyInitialProbability = new JTextField();
+		add(preyInitialProbability);
+		add(new JLabel ("Predator Initial Probability"));
+		predatorInitialProbability = new JTextField();
+		add(predatorInitialProbability);
+		//populates it with the default values so they are there
+		//when the program starts
+		populateDefaultValues();
+	}
+
+	/**
+	 * Populates the text-fields with the default values of the simulation.
+	 */
+	public void populateDefaultValues() {
+		preyLoneliness.setText("0.1");
+		preyEaten.setText("0.9");
+		predatorIsolation.setText("0.8");
+		predatorStarvation.setText("1.0");
+		predatorLoneliness.setText("0.2");
+		preyReproduction.setText("1.0");
+		predatorReproduction.setText("1.0");
+		preySurvivalWhenPredators.setText("1.0");
+		predatorSurvivalWhenPrey.setText("1.0");
+		preyInitialProbability.setText("0.4");
+		predatorInitialProbability.setText("0.2");
+	}
+
+	/**
+	 * Gets the variables that are currently populating the text-fields and updates
+	 * the UserParams.
+	 */
+	public void updateUserParams() {
+		UserParams params = UserParams.instance();
+		try {
+			params.setPreyLoneliness(Double.parseDouble(preyLoneliness.getText()));
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("Invalid number format.");
+		}
+		try {
+			params.setPreyEaten(Double.parseDouble(preyEaten.getText()));
+		} catch (NumberFormatException d) {
+			throw new IllegalArgumentException("Invalid number format.");
+		}
+		try {
+			params.setPredatorIsolation(Double.parseDouble(predatorIsolation.getText()));
+		} catch (NumberFormatException a) {
+			throw new IllegalArgumentException("Invalid number format.");
+		}
+		try {
+			params.setPredatorStarvation(Double.parseDouble(predatorStarvation.getText()));
+		} catch (NumberFormatException b) {
+			throw new IllegalArgumentException("Invalid number format.");
+		}
+		try {
+			params.setPredatorLoneliness(Double.parseDouble(predatorLoneliness.getText()));
+		} catch (NumberFormatException c) {
+			throw new IllegalArgumentException("Invalid number format.");
+		}
+		try {
+			params.setPreyReproduction(Double.parseDouble(preyReproduction.getText()));
+		} catch (NumberFormatException t) {
+			throw new IllegalArgumentException("Invalid number format.");
+		}
+		try {
+			params.setPredatorReproduction(Double.parseDouble(predatorReproduction.getText()));
+		} catch (NumberFormatException v) {
+			throw new IllegalArgumentException("Invalid number format.");
+		}
+		try {
+			params.setPreySurvivalWhenPredators(Double.parseDouble(preySurvivalWhenPredators.getText()));
+		} catch (NumberFormatException h) {
+			throw new IllegalArgumentException("Invalid number format.");
+		}
+		try {
+			params.setPredatorSurvivalWhenPrey(Double.parseDouble(predatorSurvivalWhenPrey.getText()));
+		} catch (NumberFormatException j) {
+			throw new IllegalArgumentException("Invalid number format.");
+		}
+		try {
+			params.setPreyInitialProbability(Double.parseDouble(preyInitialProbability.getText()));
+		} catch (NumberFormatException k) {
+			throw new IllegalArgumentException("Invalid number format.");
+		}
+		try {
+			params.setPredatorInitialProbability(Double.parseDouble(predatorInitialProbability.getText()));
+		} catch (NumberFormatException u) {
+			throw new IllegalArgumentException("Invalid number format.");
+		}
+		params.validateInitialProbabilities();
+	}
+	
+
+}

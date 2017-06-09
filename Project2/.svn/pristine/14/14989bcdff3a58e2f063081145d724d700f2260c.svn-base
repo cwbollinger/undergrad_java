@@ -1,0 +1,42 @@
+package edu.ncsu.csc216.todolist.model;
+
+import static org.junit.Assert.*;
+
+import java.util.Date;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class TaskListTest {
+
+	TaskList testList;
+
+	@Before
+	public void setUp() throws Exception {
+		testList = new TaskList("Test", "T1");
+	}
+
+	@Test
+	public void testGetName() {
+		assertEquals("Test", testList.getName());
+
+	}
+
+	@Test
+	public void testSetName() {
+		testList.setName("Retest");
+		assertEquals("Test", testList.getName());
+	}
+
+	@Test
+	public void testGetTaskListID() {
+		assertEquals("T1", testList.getTaskListID());
+	}
+
+	@Test
+	public void testAddTask() {
+		testList.addTask("TestTask", "This is a test task", new Date(),
+				new Date(), new Category("TestCat", "Test", "C1"));
+	}
+
+}

@@ -1,0 +1,226 @@
+package edu.ncsu.csc216.todolist.model;
+
+import java.io.Serializable;
+import java.util.Observable;
+import java.util.Observer;
+
+import edu.ncsu.csc216.todolist.util.ArrayList;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The class CategoryList holds a list of Categories, and methods that can be used in order to edit them
+ * @author Cole Logar
+ */
+public class CategoryList extends Observable implements Observer, Serializable {
+	
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 984509L;
+	
+	/** The name of the category. */
+	private String name;
+	
+	/** The next category number. */
+	private int nextCategoryNum;
+	
+	/** The list. */
+	private ArrayList<Category> list;
+
+	/**
+	 * Instantiates a new category list with a default name of "Categories".
+	 */
+	public CategoryList() {
+		name = "Categories";
+		nextCategoryNum = 1;
+		list = new ArrayList<Category>();
+	}
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Adds the category.
+	 *
+	 * @param name the name
+	 * @param details the details
+	 * @return true, if successful
+	 */
+	public boolean addCategory(String name, String details) {
+		Category c = new Category(name, details, "C" + nextCategoryNum);
+		c.addObserver(this);
+		boolean b = list.add(c);
+		nextCategoryNum++;
+
+		sort();
+		setChanged();
+		notifyObservers(this);
+		return b;
+	}
+
+	/**
+	 * Sorts the list based on the due date.
+	 */
+	private void sort() {
+		Category temp;
+		while (!isSorted()) {
+			for (int i = 0; i < list.size() - 1; i++) {
+				if (list.get(i).compareTo(list.get(i + 1)) > 0) {
+					temp = list.get(i);
+					list.remove(i);
+					list.add(i + 1, temp);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Checks if the list is sorted.
+	 *
+	 * @return true, if is sorted
+	 */
+	private boolean isSorted() {
+		if (list.size() <= 1)
+			return true;
+		for (int i = 0; i < list.size() - 1; i++) {
+			if (list.get(i).compareTo(list.get(i + 1)) > 1)
+				return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Gets the category at a given index.
+	 * 
+	 *@throws IndexOutOfBoundsException if the index is out of range
+     *         (index < 0 || index >= size())
+	 * @param idx the idx
+	 * @return the category at
+	 */
+	public Category getCategoryAt(int idx) {
+		if (idx < 0 || idx >= list.size())
+			throw new IndexOutOfBoundsException();
+		return (Category) list.get(idx);
+	}
+
+	/**
+	 * Returns the index of the given object
+	 *
+	 * @param catID the category id
+	 * @return the first index of the object in the list. If the object does not exist in
+	 * list then returns -1.
+	 */
+	public int indexOf(String catID) {
+		for (int i = 0; i < list.size(); i++) {
+			if (((Category) list.get(i)).getCategoryID().equals(catID))
+				return i;
+		}
+		return -1;
+	}
+
+	/**
+	 * Index of name.
+	 *
+	 * @param name the name
+	 * @return the first index of the object with the given name in the list. If the object does not exist in
+	 * list then returns -1.
+	 */
+	public int indexOfName(String name) {
+		for (int i = 0; i < list.size(); i++) {
+			if (((Category) list.get(i)).getName().equals(name))
+				return i;
+		}
+		return -1;
+	}
+
+	/**
+	 * Returns the size of the list.
+	 *
+	 * @return the size of the list
+	 */
+	public int size() {
+		return list.size();
+	}
+
+	/**
+	 * Checks if the list is empty.
+	 *
+	 * @return true, if is empty
+	 */
+	public boolean isEmpty() {
+		return list.isEmpty();
+	}
+
+	/**
+	 * Removes the category at the given index.
+	 *
+	 *@throws IndexOutOfBoundsException if the index is out of range
+     *         (index < 0 || index >= size())
+	 * @param idx the index
+	 * @return the category that is removed
+	 */
+	public Category removeCategoryAt(int idx) {
+
+		if (idx < 0 || idx >= list.size())
+			throw new IndexOutOfBoundsException();
+		Category b = (Category) list.remove(idx);
+		sort();
+		setChanged();
+		notifyObservers(this);
+		return b;
+	}
+
+	/**
+	 * Removes the category.
+	 *
+	 * @param catID the cat id
+	 * @return true, if successful
+	 */
+	public boolean removeCategory(String catID) {
+		int idx = this.indexOf(catID);
+		if (idx != -1) {
+			list.remove(idx);
+			sort();
+			setChanged();
+			notifyObservers(this);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Gets the 2D array representation of the list.
+	 *
+	 * @return the 2D array representation of the list.
+	 */
+	public Object[][] get2DArray() {
+		Object[][] o = new Object[list.size()][3];
+		for (int i = 0; i < list.size(); i++) {
+			o[i][0] = list.get(i).getCategoryID();
+			o[i][1] = list.get(i).getName();
+			o[i][2] = list.get(i).getDescription();
+		}
+		return o;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
+	public void update(Observable obs, Object obj) {
+		if (list.contains(obj)) {
+			setChanged();
+			notifyObservers(obj);
+			setChanged();
+			notifyObservers(this);
+		}
+		//
+		// setChanged();
+		// notifyObservers(this);
+
+	}
+
+}

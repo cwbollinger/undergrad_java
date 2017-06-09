@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ruleset xmlns="http://pmd.sf.net/ruleset/1.0.0" name="pmd-eclipse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd" xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd">
+   <description>PMD Plugin preferences rule set</description>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/EmptyCatchBlock"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/EmptyIfStmt"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/EmptyWhileStmt"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/EmptyTryBlock"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/EmptyFinallyBlock"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/EmptySwitchStatements"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/JumbledIncrementer"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/ForLoopShouldBeWhileLoop"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UnnecessaryConversionTemporary"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/DoubleCheckedLocking"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/ReturnFromFinallyBlock"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/EmptySynchronizedBlock"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UnnecessaryReturn"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/EmptyStaticInitializer"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UnconditionalIfStatement"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/EmptyStatementNotInLoop"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/BooleanInstantiation"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UnnecessaryFinalModifier"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/CollapsibleIfStatements"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UselessOverridingMethod"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/ClassCastExceptionWithToArray"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UselessOperationOnImmutable"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/MisplacedNullCheck"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UnusedNullCheckInEquals"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/BrokenNullCheck"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UnnecessaryParentheses"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/SuspiciousOctalEscape"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/SimplifyBooleanExpressions"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/EqualsNull"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UncommentedEmptyMethod"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UncommentedEmptyConstructor"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/DuplicateImports"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/DontImportJavaLang"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UnusedImports"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UnusedPrivateField"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UnusedLocalVariable"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/UnusedPrivateMethod"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/JUnit3TestsHaveAssertions"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/JUnit4TestsHaveAssertions"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/JUnit3ConstantAssertion"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/JUnit4ConstantAssertion"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/JUnitTestClassNeedsTestCase"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/FormalParametersNeedMeaningfulNames"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/LongVariable"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/ShortMethodName"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/MethodNamingConventions"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/ClassNamingConventions"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/MethodWithSameNameAsEnclosingClass"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/SuspiciousHashcodeMethodName"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/SuspiciousEqualsMethodName"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/NoPackage"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/PackageCase"/>
+   <rule ref="C:\Users\chris\Downloads\csc216_pmd.xml/BooleanGetMethodName"/>
+</ruleset>

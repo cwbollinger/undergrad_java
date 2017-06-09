@@ -1,0 +1,44 @@
+package edu.ncsu.csc216.predator_prey.gui;
+
+import javax.swing.JPanel;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.general.Dataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
+public class PredatorPreyChart extends JPanel{
+
+	JFreeChart chart;
+	XYSeries preySeries;
+	XYSeries predatorSeries;
+	XYSeriesCollection dataSet;
+	
+	
+	public PredatorPreyChart() {
+		preySeries = new XYSeries("Prey Series");
+		predatorSeries = new XYSeries("Predator Series");
+		dataSet = new XYSeriesCollection(preySeries);
+		dataSet.addSeries(predatorSeries);
+		chart = ChartFactory.createXYLineChart("Test", "Timestep", "Population", dataSet);
+		add(new ChartPanel(chart));
+		
+		
+		validate();
+	}
+	
+	public void addDataPoint(int timestep, int numPrey, int numPredator) {
+		preySeries.add(timestep, numPrey);
+		predatorSeries.add(timestep, numPredator);
+		
+	}
+
+	public void removeAllDataPoints() {
+		preySeries.clear();
+		predatorSeries.clear();
+	}
+
+}

@@ -1,0 +1,150 @@
+package edu.ncsu.csc216.todolist.model;
+
+import java.io.Serializable;
+import java.util.Observable;
+
+
+/**
+ * The Class Category that contains and manages information about a Category.
+ * @author Cole Logar
+ */
+public class Category extends Observable implements Comparable<Category>,
+				Serializable {
+	
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 459188L;
+	
+	/** The name of the Category. */
+	private String name;
+	
+	/** The details about a Category. */
+	private String details;
+	
+	/** The category id. */
+	private String categoryID;
+
+	/**
+	 * Instantiates a new category.
+	 *
+	 * @throws IllegalArgumentException when the title is null or an empty String
+	 * @param name the name
+	 * @param details the details
+	 * @param id the id
+	 */
+	public Category(String name, String details, String id) {
+		setName(name);
+		if (id == null || id.trim().equals(""))
+			throw new IllegalArgumentException();
+		this.details = details;
+		this.categoryID = id;
+		setChanged();
+		notifyObservers(this);
+	}
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Sets the name.
+	 *
+	 * @throws IllegalArgumentException when the title is null or an empty String
+	 * @param name the new name
+	 */
+	public void setName(String name) {
+		if (name == null ||name.trim().equals(""))
+			throw new IllegalArgumentException();
+		this.name = name;
+		setChanged();
+		notifyObservers(this);
+	}
+
+	/**
+	 * Gets the description.
+	 *
+	 * @return the description
+	 */
+	public String getDescription() {
+		return details;
+	}
+
+	/**
+	 * Sets the description.
+	 *
+	 * @param details the new description
+	 */
+	public void setDescription(String details) {
+		this.details = details;
+		setChanged();
+		notifyObservers(this);
+	}
+
+	/**
+	 * Gets the category id.
+	 *
+	 * @return the category id
+	 */
+	public String getCategoryID() {
+		return categoryID;
+	}
+
+	/**
+	 * Returns the boolean value if the two objects are equal
+	 * 
+	 * @param obj the object to be compared
+	 * @return the boolean value of if the two objects are equal
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Category other = (Category) obj;
+		if (categoryID == null) {
+			if (other.categoryID != null)
+				return false;
+		} else if (!categoryID.equals(other.categoryID))
+			return false;
+		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	public int compareTo(Category c) {
+		return categoryID.compareTo(c.getCategoryID());
+	}
+
+	/**
+	 * Returns an easy to read representation of the Category.
+	 * 
+	 * @return String representation of Category
+	 */
+	public String toString() {
+		return getName();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((categoryID == null) ? 0 : categoryID.hashCode());
+		return result;
+	}
+
+
+}

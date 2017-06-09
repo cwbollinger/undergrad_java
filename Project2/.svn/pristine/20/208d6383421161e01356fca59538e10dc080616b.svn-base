@@ -1,0 +1,137 @@
+package edu.ncsu.csc216.todolist.model;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
+
+import edu.ncsu.csc216.todolist.util.LinkedList;
+
+public class TaskList extends Observable implements Observer, Serializable{
+	private static final long serialVersionUID = 98734509L;
+	private String name;
+	private int nextTaskNum;
+	private String taskListID;
+	private boolean sorted = false;
+	private LinkedList<Task> list;
+	
+	public TaskList(String name, String taskListID){
+		this.name = name;
+		this.taskListID = taskListID;
+		list = new LinkedList<Task>();
+		setChanged();
+		notifyObservers(this);
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+		setChanged();
+		notifyObservers(this);
+	}
+	
+	public String getTaskListID(){
+		return taskListID;
+	}
+	
+	private void sort(){
+		sorted = false;
+		Task temp;
+		while(!sorted){
+			sorted = true;
+			for(int i = 0; i < size() - 1; i++){
+				if(list.get(i).compareTo(list.get(i+1))>0){
+					sorted = false;
+					temp = list.get(i);
+					list.remove(i);
+					list.add(i+1, temp);
+				}
+			}
+		}
+	}
+	
+	public boolean addTask(String name, String detials, Date start, Date due, Category cat){
+		Task t = new Task(name, detials, start, due, cat, "T"+nextTaskNum);
+		t.addObserver(this);
+		boolean b = list.add(t);
+		nextTaskNum++;
+		sort();
+		setChanged();
+		notifyObservers(this);
+		return b;
+	}
+
+	public Task getTaskAt(int idx){
+		if(idx < 0 || idx > list.size() - 1)
+			throw new IndexOutOfBoundsException(idx+"");
+		return (Task) list.get(idx);
+	}
+	
+	public int indexOf(String name){
+		for(int i = 0; i < list.size(); i++){
+			if(((Task) list.get(i)).getTaskID().equalsIgnoreCase(name))
+				return i;
+		}
+		return -1;
+	}
+	
+	public int size(){
+		return list.size();
+	}
+	
+	public boolean isEmpty(){
+		return list.isEmpty();
+	}
+	
+	public Task removeTaskAt(int idx){
+		if(idx < 0 || idx >= list.size()){
+			throw new IndexOutOfBoundsException();
+		}
+		Task t = (Task) list.remove(idx);
+		sort();
+		setChanged();
+		notifyObservers(this);
+		return t;
+	}
+	
+	public boolean removeTask(String name){
+		int idx = this.indexOf(name);
+		if(idx != -1){
+			list.remove(idx);
+			sort();
+			setChanged();
+			notifyObservers(this);
+			return true;
+		}
+		return false;
+	}
+	
+	public Object[][] get2DArray(){
+		Object[][] o = new Object[list.size()][8];
+		for(int i = 0; i < list.size(); i++){
+			o[i][0] = ((Task)list.get(i)).getTaskID();
+			o[i][1] = ((Task)list.get(i)).getTitle();
+			o[i][2] = ((Task)list.get(i)).getDetails();
+			o[i][3] = ((Task)list.get(i)).getStartDateTime();
+			o[i][4] = ((Task)list.get(i)).getDueDateTime();
+			o[i][5] = ((Task)list.get(i)).getCompletedDateTime();
+			o[i][6] = ((Task)list.get(i)).isCompleted();
+			o[i][7] = ((Task)list.get(i)).getCategory();
+		}
+		return o;
+	}
+	
+	public void update(Observable obs, Object obj){
+		//if(list.contains(obj)){
+			sort();
+			setChanged();
+			notifyObservers(this);
+		//}
+		//TODO
+	}
+	
+	
+}

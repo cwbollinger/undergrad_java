@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd>
+    <useProjectRuleSet>false</useProjectRuleSet>
+    <ruleSetFile>.ruleset</ruleSetFile>
+    <rules>
+        <rule>
+            <name>BooleanInstantiation</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>BrokenNullCheck</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>ClassCastExceptionWithToArray</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>CollapsibleIfStatements</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>DoubleCheckedLocking</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyCatchBlock</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyFinallyBlock</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyIfStmt</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyStatementNotInLoop</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyStaticInitializer</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>EmptySwitchStatements</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>EmptySynchronizedBlock</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyTryBlock</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyWhileStmt</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>ForLoopShouldBeWhileLoop</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>JumbledIncrementer</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>MisplacedNullCheck</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>ReturnFromFinallyBlock</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UnconditionalIfStatement</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UnnecessaryConversionTemporary</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UnnecessaryFinalModifier</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UnnecessaryReturn</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UnusedNullCheckInEquals</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UselessOperationOnImmutable</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UselessOverridingMethod</name>
+            <ruleset>Basic Rules</ruleset>
+        </rule>
+        <rule>
+            <name>SuspiciousOctalEscape</name>
+            <ruleset>Controversial Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UnnecessaryParentheses</name>
+            <ruleset>Controversial Rules</ruleset>
+        </rule>
+        <rule>
+            <name>BooleanGetMethodName</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>ClassNamingConventions</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>FormalParametersNeedMeaningfulNames</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>JUnit3ConstantAssertion</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>JUnit3TestsHaveAssertions</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>JUnit4ConstantAssertion</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>JUnit4TestsHaveAssertions</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>JUnitTestClassNeedsTestCase</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>LongVariable</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>MethodNamingConventions</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>MethodWithSameNameAsEnclosingClass</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>NoPackage</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>PackageCase</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>ShortMethodName</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>SuspiciousEqualsMethodName</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>SuspiciousHashcodeMethodName</name>
+            <ruleset>csc216_pmd</ruleset>
+        </rule>
+        <rule>
+            <name>EqualsNull</name>
+            <ruleset>Design Rules</ruleset>
+        </rule>
+        <rule>
+            <name>SimplifyBooleanExpressions</name>
+            <ruleset>Design Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UncommentedEmptyConstructor</name>
+            <ruleset>Design Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UncommentedEmptyMethod</name>
+            <ruleset>Design Rules</ruleset>
+        </rule>
+        <rule>
+            <name>DontImportJavaLang</name>
+            <ruleset>Import Statement Rules</ruleset>
+        </rule>
+        <rule>
+            <name>DuplicateImports</name>
+            <ruleset>Import Statement Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UnusedImports</name>
+            <ruleset>Import Statement Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UnusedLocalVariable</name>
+            <ruleset>Unused Code Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UnusedPrivateField</name>
+            <ruleset>Unused Code Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UnusedPrivateMethod</name>
+            <ruleset>Unused Code Rules</ruleset>
+        </rule>
+    </rules>
+    <includeDerivedFiles>false</includeDerivedFiles>
+    <violationsAsErrors>true</violationsAsErrors>
+</pmd>

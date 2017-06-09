@@ -1,0 +1,35 @@
+package edu.ncsu.csc216.predator_prey.model;
+
+/**
+ * An abstract class of the finite state machine implementation. It knows its state
+ * and can update its state based on the number of prey and predators
+ * in the adjacent cells.
+ * @author Daniel Rice
+ *
+ */
+public abstract class CellState {
+
+	/**
+	 * Constructs the CellState. There are no data members to construct.
+	 */
+	public CellState() {
+		//there isn't anything for this to do
+		super();
+	}
+
+	/**
+	 * Returns the state of the cell. 0 if its empty, 1 if its prey, 2 if its predator.
+	 * @return an integer representation of the state of the cell:
+	 * 0 if empty, 1 if prey, 2 if predator
+	 */
+	public abstract int getState();
+
+	/**
+	 * Updates the state of the cell based on the number
+	 * of predators and prey in the surrounding cells.
+	 * @param prey the number of prey in the surrounding cells
+	 * @param predators the number of predators in the surrounding cells
+	 */
+	public abstract void update(int prey, int predators);
+
+}

@@ -1,0 +1,81 @@
+import java.io.*;
+import java.util.Scanner;
+
+
+public class Main {
+
+	private static HashTable table;
+	
+	public static void main( String[] args) {
+		//ArrayList orderIn = new ArrayList();
+		Scanner input = new Scanner(System.in);
+		System.out.println("What file should I process?");
+		String fileName = input.nextLine();
+		try {
+		processFile(fileName);
+		} catch (Exception e) {
+			System.out.println("ERROR PROCESSING FILE:"+e);
+		}
+		System.out.println("THIS WILL BE INTERFACE");
+		input.close();
+		promptUser();
+		return;
+
+	}
+	
+	public static void processFile(String fileName) throws IOException, FileNotFoundException {
+		Scanner lineCounter = new Scanner(new FileReader(fileName));
+		Scanner fileScanner = new Scanner(new FileReader(fileName));
+		
+		int keySize = fileScanner.nextInt(); // get key size
+		int[] maxVals = new int[keySize];
+		// get max values for key
+		for(int i = 0; i < keySize; i++) {
+			maxVals[i] = fileScanner.nextInt();
+		}
+		
+		// find # of lines in file
+		int numLines = 0;
+		while(lineCounter.hasNextLine()) {
+			lineCounter.nextLine();
+			numLines++;
+		}
+		lineCounter.close();
+		
+		
+		Key.initKey(keySize, maxVals);
+		Key.printStats();
+		System.out.println(numLines);
+		// init hash table to 120% of the number of lines in the file (some will be duplicate keys)
+		table = new HashTable((int)(numLines*1.2));
+		int[] vals= new int[keySize];
+		while (fileScanner.hasNextLine()) {
+			for(int i = 0; i < keySize; i++) {
+				int val = fileScanner.nextInt();
+				if (val == -911) { // end of file
+					System.out.println("END of file found");
+					fileScanner.close();
+					return;
+				}
+				System.out.print(val+" ");
+				vals[i] = val;
+			}
+			System.out.println();
+			table.addKey(new Key(vals));
+		}
+		fileScanner.close();
+	}
+	
+	public static void promptUser(Scanner input) {
+		String command;
+		System.out.println("What would you like to do?");
+		while(!input.hasNext())
+			;
+		command = input.nextLine();
+		System.out.println("Fetched next line");
+		if (command.equalsIgnoreCase("Exit")) {
+			return;
+		}
+		System.out.println("Command read:"+command);
+	}
+}

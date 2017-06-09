@@ -1,0 +1,21 @@
+I used a radix-based sum as my first hash function, and a simple sum-mod hash for my second hash function.
+I used the radix-based hash because it used the order and value of the key data to create the hash.
+I used the sum-mod hash for my second hash function because I was not getting many collisions during hashing,
+and it is fast to calculate.
+
+The radix-based hash does a good job of spreading values out across the table. The second hash is less effective,
+but since it is used relatively infrequently, I did not notice much secondary clustering in the hash tables.
+
+The collision avoidance strategy was to jump forward in the table by the value of hash(2) every time a collision occured.
+This performed as expected, and did not result in significant clustering in the table.
+
+Filename		Execution Time	Memory Used
+ncd1.txt		63 ms			495 bytes
+ncd2.txt		585 ms			10576 bytes
+ncd3.txt		1111 ms			73936 bytes
+ncd4.txt		1281 ms			238096 bytes
+sat10.txt
+sat100.txt		786 ms			5774 bytes
+sat1000.txt		2791 ms			136456 bytes
+sat10000.txt	102143 ms		1309928 bytes
+multiklas.txt	2283 ms			162568 bytes
